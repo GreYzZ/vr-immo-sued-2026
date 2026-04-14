@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Slide 01 – neubau.marketing</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,700;0,900;1,700;1,900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    font-family: 'Roboto', sans-serif;
+    background: #2c313c !important;
+    color: #ffffff;
+  }
+
+  .slide-wrap {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #2c313c;
+    overflow: hidden;
+    z-index: 0;
+  }
+
+  /* ── BACKGROUND ── */
+  .bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80vw 70vh at 80% -15%, rgba(91,143,241,0.12) 0%, transparent 55%),
+      radial-gradient(ellipse 50vw 50vh at -10% 95%, rgba(91,143,241,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 40vw 40vh at 50% 50%, rgba(91,143,241,0.04) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+  }
+
+  /* ── SLIDE ── */
+  .slide {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    z-index: 1;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 3vh 4.5vw 0;
+  }
+
+  /* neubau.marketing weiß + blauer Punkt */
+  .brand {
+    font-size: clamp(13px, 1.1vw, 18px);
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    color: #ffffff;
+  }
+  .brand span { color: #5b8ff1; }
+
+  .slide-num {
+    font-size: clamp(11px, 0.85vw, 14px);
+    letter-spacing: 0.14em;
+    color: rgba(255,255,255,0.55);
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+
+  /* ── BODY ── */
+  .body {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    padding: 2vh 4.5vw 3vh;
+    gap: 5vw;
+  }
+
+  /* ── LEFT ── */
+  .left {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 1vw;
+    font-size: clamp(10px, 0.8vw, 13px);
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #5b8ff1;
+    margin-bottom: 3.5vh; /* mehr Abstand zur Headline */
+  }
+  .eyebrow::before,
+  .eyebrow::after {
+    content: '';
+    height: 1px;
+    width: 2.5vw;
+    background: rgba(91,143,241,0.5);
+    flex-shrink: 0;
+  }
+
+  /* GRADIENT HEADLINE */
+  .headline {
+    font-weight: 900;
+    line-height: 1.05;
+    margin-bottom: 2.5vh;
+  }
+
+  .headline .l1 {
+    display: block;
+    font-size: clamp(28px, 4.2vw, 66px);
+    color: #ffffff;
+  }
+
+  .headline .l2 {
+    display: block;
+    font-size: clamp(28px, 4.2vw, 66px);
+    font-style: italic;
+    background: linear-gradient(135deg, #5b8ff1 0%, #7aaaf5 50%, #3d5a9e 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .subline {
+    font-size: clamp(13px, 1.1vw, 18px);
+    font-weight: 400;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.7;
+    max-width: 34vw;
+    margin-bottom: 4vh;
+  }
+
+  .divider {
+    width: 4vw;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(91,143,241,0.6), transparent);
+    margin-bottom: 4vh;
+  }
+
+  /* ── STATS ── */
+  .stats {
+    display: flex;
+    align-items: stretch;
+  }
+
+  .stat {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6vh;
+    padding-right: 3vw;
+  }
+
+  .stat + .stat {
+    padding-left: 3vw;
+    border-left: 1px solid rgba(255,255,255,0.12);
+  }
+
+  /* Gradient auf Stats-Zahlen */
+  .stat-value {
+    font-size: clamp(22px, 3vw, 50px);
+    font-weight: 900;
+    line-height: 1;
+    background: linear-gradient(135deg, #5b8ff1 0%, #7aaaf5 60%, #3d5a9e 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    filter: drop-shadow(0 0 12px rgba(91,143,241,0.3));
+  }
+
+  /* Einzeilig, voller Kontrast */
+  .stat-label {
+    font-size: clamp(11px, 0.85vw, 14px);
+    font-weight: 500;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.4;
+    white-space: nowrap;
+  }
+
+  /* ── RIGHT ── */
+  .right {
+    width: 30vw;
+    flex-shrink: 0;
+  }
+
+  .logo-card {
+    border-radius: 18px;
+    border: 1px solid rgba(91,143,241,0.25);
+    background: linear-gradient(150deg, rgba(91,143,241,0.10) 0%, rgba(91,143,241,0.03) 100%);
+    box-shadow:
+      0 0 80px rgba(91,143,241,0.10),
+      0 0 30px rgba(91,143,241,0.06),
+      inset 0 0 60px rgba(91,143,241,0.04);
+    padding: 4.5vh 3vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    gap: 2.8vh;
+  }
+
+  .logo-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 8%; right: 8%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(91,143,241,0.8), transparent);
+  }
+
+  .logo-card::after {
+    content: '';
+    position: absolute;
+    top: -50%; left: 50%;
+    transform: translateX(-50%);
+    width: 70%; height: 70%;
+    background: radial-gradient(circle, rgba(91,143,241,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .since-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7vw;
+    font-size: clamp(9px, 0.78vw, 13px);
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.8vh 1.4vw;
+    border-radius: 20px;
+    background: #5b8ff1;
+    color: #ffffff;
+    box-shadow: 0 0 20px rgba(91,143,241,0.5);
+    position: relative;
+    z-index: 1;
+    white-space: nowrap;
+  }
+
+  .pulse {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: #ffffff;
+    box-shadow: 0 0 8px rgba(255,255,255,0.8);
+    animation: blink 2s infinite;
+    flex-shrink: 0;
+  }
+
+  @keyframes blink {
+    0%,100% { opacity:1; }
+    50%      { opacity:0.3; }
+  }
+
+  .logo-wrap {
+    position: relative;
+    z-index: 1;
+  }
+
+  .logo-wrap img {
+    width: clamp(140px, 14vw, 220px);
+    height: auto;
+    display: block;
+  }
+
+  .card-divider {
+    width: 55%;
+    height: 1px;
+    background: rgba(255,255,255,0.08);
+    position: relative;
+    z-index: 1;
+  }
+
+  .rebrand {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1vw;
+    position: relative;
+    z-index: 1;
+  }
+
+  .rebrand-from {
+    font-size: clamp(10px, 0.82vw, 14px);
+    font-weight: 500;
+    color: rgba(255,255,255,0.55);
+    letter-spacing: 0.06em;
+  }
+
+  .rebrand-arrow {
+    font-size: clamp(11px, 0.9vw, 15px);
+    color: rgba(91,143,241,0.8);
+  }
+
+  .rebrand-to {
+    font-size: clamp(10px, 0.82vw, 14px);
+    font-weight: 700;
+    color: rgba(255,255,255,0.9);
+    letter-spacing: 0.06em;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    padding: 0 4.5vw 2.5vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+  }
+
+  .footer::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 4.5vw; right: 4.5vw;
+    height: 1px;
+    background: rgba(255,255,255,0.12);
+  }
+
+  .footer-text {
+    font-size: clamp(10px, 0.78vw, 13px);
+    font-weight: 500;
+    color: rgba(255,255,255,0.6);
+    letter-spacing: 0.08em;
+    padding-top: 1.5vh;
+  }
+</style>
+</head>
+<body>
+
+<div class="slide-wrap">
+  <div class="bg"></div>
+
+  <div class="slide">
+
+    <div class="header">
+      <div class="brand">neubau<span>.</span>marketing</div>
+      <div class="slide-num">01 / 08</div>
+    </div>
+
+    <div class="body">
+
+      <!-- LEFT -->
+      <div class="left">
+        <div class="eyebrow">VR-Immo S&uuml;d &middot; Generalversammlung 2026</div>
+
+        <div class="headline">
+          <span class="l1">Wir sind keine Agentur.</span>
+          <span class="l2">Wir sind Euer Vertriebssystem.</span>
+        </div>
+
+        <div class="subline">
+          Starke Kampagne. St&auml;rkerer Vertrieb.
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="stats">
+          <div class="stat">
+            <div class="stat-value">25</div>
+            <div class="stat-label">Partner in Betreuung</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value">40</div>
+            <div class="stat-label">Projekte betreut</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value">2&ndash;3 Mio.</div>
+            <div class="stat-label">&Oslash; Vertriebsvolumen pro Partner</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT -->
+      <div class="right">
+        <div class="logo-card">
+          <div class="since-badge">
+            <div class="pulse"></div>
+            3. Jahr in Folge &middot; VR-Immo S&uuml;d
+          </div>
+          <div class="logo-wrap">
+            <img
+              src="https://ik.imagekit.io/ViewRStudio/Neobau%20Digital%20GmbH/Grafik/Logo/1.png"
+              alt="neubau.marketing"
+            />
+          </div>
+          <div class="card-divider"></div>
+          <div class="rebrand">
+            <span class="rebrand-from">ViewR Studio</span>
+            <span class="rebrand-arrow">&#8594;</span>
+            <span class="rebrand-to">neubau.marketing</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer">
+      <div class="footer-text">Neobau Digital GmbH &middot; neubau.marketing</div>
+      <div class="footer-text">Vertraulich &middot; VR-Immo S&uuml;d 2026</div>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>
