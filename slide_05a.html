@@ -55,7 +55,6 @@
     z-index: 1;
   }
 
-  /* ── HEADER ── */
   .header {
     display: flex;
     align-items: center;
@@ -80,7 +79,6 @@
     font-weight: 700;
   }
 
-  /* ── BODY ── */
   .body {
     flex: 1;
     display: flex;
@@ -95,7 +93,7 @@
     flex-shrink: 0;
     display: flex;
     flex-direction: column;
-    gap: 2vh;
+    gap: 1.5vh;
   }
 
   .case-eyebrow {
@@ -117,12 +115,16 @@
     flex-shrink: 0;
   }
 
+  /* Case-Tag — größer, heller */
   .case-tag {
-    font-size: clamp(9px, 0.72vw, 11px);
+    font-size: clamp(11px, 0.9vw, 14px);
     font-weight: 700;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.35);
+    color: rgba(255,255,255,0.7);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .case-headline {
@@ -140,9 +142,9 @@
     color: transparent;
   }
 
-  /* PROJECT IMAGE */
+  /* PROJECT IMAGE — größer */
   .project-img {
-    height: 18vh;
+    height: 22vh;
     flex-shrink: 0;
     border-radius: 14px;
     overflow: hidden;
@@ -172,20 +174,20 @@
     display: inline-flex;
     align-items: center;
     gap: 0.6vw;
-    font-size: clamp(9px, 0.75vw, 12px);
+    font-size: clamp(10px, 0.85vw, 14px);
     font-weight: 700;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    padding: 0.7vh 1.2vw;
+    padding: 0.8vh 1.4vw;
     border-radius: 20px;
-    background: rgba(91,143,241,0.08);
+    background: rgba(91,143,241,0.1);
     color: #5b8ff1;
-    border: 1px solid rgba(91,143,241,0.2);
+    border: 1px solid rgba(91,143,241,0.25);
     width: fit-content;
   }
 
   .pulse {
-    width: 6px; height: 6px;
+    width: 7px; height: 7px;
     border-radius: 50%;
     background: #5b8ff1;
     box-shadow: 0 0 8px #5b8ff1;
@@ -198,25 +200,25 @@
     50%      { opacity:0.2; box-shadow: none; }
   }
 
-  /* CONTEXT NOTE */
+  /* CONTEXT NOTE — größer + heller */
   .context-note {
-    border-left: 2px solid rgba(91,143,241,0.4);
-    padding: clamp(8px, 1vh, 12px) clamp(10px, 1vw, 14px);
-    background: rgba(91,143,241,0.04);
+    border-left: 2px solid rgba(91,143,241,0.5);
+    padding: clamp(10px, 1.2vh, 16px) clamp(12px, 1vw, 16px);
+    background: rgba(91,143,241,0.06);
     border-radius: 0 8px 8px 0;
     margin-top: auto;
   }
 
   .context-note p {
-    font-size: clamp(10px, 0.82vw, 13px);
-    font-weight: 300;
-    color: rgba(255,255,255,0.6);
-    line-height: 1.6;
+    font-size: clamp(12px, 0.95vw, 15px);
+    font-weight: 400;
+    color: rgba(255,255,255,0.8);
+    line-height: 1.65;
     font-style: italic;
   }
 
   .context-note strong {
-    color: rgba(255,255,255,0.85);
+    color: #ffffff;
     font-style: normal;
     font-weight: 700;
   }
@@ -235,7 +237,7 @@
     border-radius: 14px;
     border: 1px solid rgba(255,255,255,0.07);
     background: rgba(255,255,255,0.03);
-    padding: clamp(10px, 1.2vh, 16px) clamp(14px, 1.4vw, 22px);
+    padding: clamp(12px, 1.4vh, 20px) clamp(14px, 1.4vw, 22px);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -251,7 +253,6 @@
     background: linear-gradient(90deg, transparent, rgba(91,143,241,0.2), transparent);
   }
 
-  /* HERO — spans 2 cols */
   .bento.hero {
     grid-column: 1 / 3;
     background: linear-gradient(145deg, rgba(91,143,241,0.10) 0%, rgba(91,143,241,0.03) 100%);
@@ -275,14 +276,16 @@
     pointer-events: none;
   }
 
+  /* BENTO LABEL — heller + größer */
   .bento-label {
-    font-size: clamp(8px, 0.68vw, 11px);
+    font-size: clamp(10px, 0.82vw, 13px);
     font-weight: 700;
-    letter-spacing: 0.15em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.3);
+    color: rgba(255,255,255,0.65);
   }
 
+  /* BENTO VALUE — vertikal zentriert */
   .bento-value {
     font-weight: 900;
     line-height: 1;
@@ -291,24 +294,26 @@
     background-clip: text;
     color: transparent;
     filter: drop-shadow(0 0 12px rgba(91,143,241,0.3));
+    margin: auto 0;
   }
 
-  .bento.hero .bento-value { font-size: clamp(36px, 5vw, 80px); }
-  .bento:not(.hero) .bento-value { font-size: clamp(22px, 2.8vw, 44px); }
+  .bento.hero .bento-value { font-size: clamp(36px, 5vw, 80px); margin: 0; }
+  .bento:not(.hero) .bento-value { font-size: clamp(24px, 3vw, 48px); }
 
+  /* BENTO SUB — heller + größer */
   .bento-sub {
-    font-size: clamp(10px, 0.78vw, 13px);
+    font-size: clamp(11px, 0.88vw, 14px);
     font-weight: 500;
-    color: rgba(255,255,255,0.55);
+    color: rgba(255,255,255,0.75);
     line-height: 1.4;
     margin-top: 0.5vh;
   }
 
-  /* BUDGET ROW */
   .budget-row {
     display: flex;
     align-items: center;
     gap: 1vw;
+    margin: auto 0;
   }
 
   .budget-item {
@@ -317,15 +322,8 @@
     gap: 0.3vh;
   }
 
-  .budget-arrow {
-    font-size: clamp(18px, 2vw, 32px);
-    color: rgba(91,143,241,0.5);
-    font-weight: 900;
-    flex-shrink: 0;
-  }
-
   .budget-value {
-    font-size: clamp(14px, 1.6vw, 24px);
+    font-size: clamp(16px, 1.8vw, 28px);
     font-weight: 900;
     line-height: 1;
     background: linear-gradient(135deg, #5b8ff1 0%, #7aaaf5 60%, #3d5a9e 100%);
@@ -336,14 +334,14 @@
   }
 
   .budget-label {
-    font-size: clamp(8px, 0.65vw, 10px);
+    font-size: clamp(9px, 0.72vw, 11px);
     font-weight: 700;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.3);
+    color: rgba(255,255,255,0.5);
   }
 
-  /* ── FOOTER ── */
+  /* ── FOOTER — heller ── */
   .footer {
     padding: 0 4.5vw 2.5vh;
     display: flex;
@@ -358,13 +356,13 @@
     position: absolute;
     top: 0; left: 4.5vw; right: 4.5vw;
     height: 1px;
-    background: rgba(255,255,255,0.12);
+    background: rgba(255,255,255,0.15);
   }
 
   .footer-text {
-    font-size: clamp(10px, 0.78vw, 13px);
+    font-size: clamp(11px, 0.9vw, 15px);
     font-weight: 500;
-    color: rgba(255,255,255,0.6);
+    color: rgba(255,255,255,0.75);
     letter-spacing: 0.08em;
     padding-top: 1.5vh;
   }
@@ -394,10 +392,7 @@
         </div>
 
         <div class="project-img">
-          <img
-            src="https://ik.imagekit.io/ViewRStudio/Kundenordner/BSK%20Immobilien%20GmbH/Neubauprojekte/Kranoldplatz/Herobilder/00.jpg"
-            alt="Kranoldplatz Berlin"
-          />
+          <img src="https://ik.imagekit.io/ViewRStudio/Kundenordner/BSK%20Immobilien%20GmbH/Neubauprojekte/Kranoldplatz/Herobilder/00.jpg" alt="Kranoldplatz Berlin" />
         </div>
 
         <div class="laufzeit-badge">
@@ -413,21 +408,18 @@
       <!-- RIGHT BENTO -->
       <div class="right">
 
-        <!-- HERO: Anfragen -->
         <div class="bento hero">
           <div class="bento-label">Qualifizierte Anfragen</div>
           <div class="bento-value">142</div>
           <div class="bento-sub">in 5 Wochen &mdash; Kampagne weiter aktiv</div>
         </div>
 
-        <!-- CPL -->
         <div class="bento">
           <div class="bento-label">Kosten pro Anfrage</div>
           <div class="bento-value">22,12 &euro;</div>
           <div class="bento-sub">Cost per Lead</div>
         </div>
 
-        <!-- Budget → Reservierungen -->
         <div class="bento">
           <div class="bento-label">Mediabudget</div>
           <div class="budget-row">
@@ -439,14 +431,12 @@
           <div class="bento-sub">bereits 3 Reservierungen gesichert</div>
         </div>
 
-        <!-- Reservierungen -->
         <div class="bento">
           <div class="bento-label">Reservierte Einheiten</div>
           <div class="bento-value">3</div>
           <div class="bento-sub">in 5 Wochen &mdash; weitere in Qualifizierung</div>
         </div>
 
-        <!-- Laufzeit -->
         <div class="bento">
           <div class="bento-label">Kampagnenlaufzeit</div>
           <div class="bento-value">5 Wo.</div>
