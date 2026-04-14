@@ -55,7 +55,6 @@
     z-index: 1;
   }
 
-  /* ── HEADER ── */
   .header {
     display: flex;
     align-items: center;
@@ -80,18 +79,16 @@
     font-weight: 700;
   }
 
-  /* ── BODY ── */
   .body {
     flex: 1;
     display: flex;
     flex-direction: column;
-    padding: 3vh 4.5vw 2vh;
-    gap: 5vh;
+    padding: 2.5vh 4.5vw 2vh;
+    gap: 3vh;
     justify-content: center;
     min-height: 0;
   }
 
-  /* ── TOP ── */
   .top { flex-shrink: 0; }
 
   .eyebrow {
@@ -103,7 +100,7 @@
     letter-spacing: 0.22em;
     text-transform: uppercase;
     color: #5b8ff1;
-    margin-bottom: 3.5vh;
+    margin-bottom: 2.5vh;
   }
   .eyebrow::before,
   .eyebrow::after {
@@ -129,7 +126,7 @@
     color: transparent;
   }
 
-  /* ── THREE POINTS ── */
+  /* ── POINTS — komprimiert ── */
   .points {
     display: flex;
     gap: 1.5vw;
@@ -144,10 +141,10 @@
     border-radius: 16px;
     border: 1px solid rgba(255,255,255,0.08);
     background: rgba(255,255,255,0.03);
-    padding: clamp(16px, 2vh, 26px) clamp(18px, 1.8vw, 28px) clamp(12px, 1.4vh, 20px);
+    padding: clamp(14px, 1.6vh, 22px) clamp(18px, 1.8vw, 28px) clamp(12px, 1.2vh, 18px);
     display: flex;
     flex-direction: column;
-    gap: 1.6vh;
+    gap: 1.2vh;
     position: relative;
     overflow: hidden;
   }
@@ -160,7 +157,6 @@
     background: linear-gradient(90deg, transparent, rgba(91,143,241,0.25), transparent);
   }
 
-  /* Middle card featured */
   .point-card.featured {
     background: linear-gradient(160deg, #1f2535 0%, #252d40 100%);
     border-color: rgba(91,143,241,0.3);
@@ -184,14 +180,14 @@
     pointer-events: none;
   }
 
-  /* POINT NUMBER */
+  /* POINT NUMBER — heller */
   .point-num {
     display: flex;
     align-items: center;
     gap: 10px;
-    font-size: clamp(9px, 0.7vw, 11px);
+    font-size: clamp(10px, 0.78vw, 13px);
     letter-spacing: 0.15em;
-    color: rgba(255,255,255,0.25);
+    color: rgba(255,255,255,0.5);
     font-weight: 700;
   }
 
@@ -199,18 +195,12 @@
     content: '';
     flex: 1;
     height: 1px;
-    background: rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.1);
   }
 
-  .point-card.featured .point-num {
-    color: rgba(91,143,241,0.6);
-  }
+  .point-card.featured .point-num { color: rgba(91,143,241,0.8); }
+  .point-card.featured .point-num::after { background: rgba(91,143,241,0.2); }
 
-  .point-card.featured .point-num::after {
-    background: rgba(91,143,241,0.15);
-  }
-
-  /* POINT ICON */
   .point-icon {
     width: clamp(36px, 3.5vw, 54px);
     height: clamp(36px, 3.5vw, 54px);
@@ -223,8 +213,8 @@
   }
 
   .point-card:not(.featured) .point-icon {
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
   }
 
   .point-card.featured .point-icon {
@@ -232,13 +222,11 @@
     border: 1px solid rgba(91,143,241,0.25);
   }
 
-  /* POINT TITLE */
   .point-title {
     font-size: clamp(18px, 1.9vw, 30px);
     font-weight: 900;
     line-height: 1.15;
     color: #ffffff;
-    /* Zwei Zeilen erzwingen für gleichmäßigen Aufbau */
     min-height: calc(clamp(18px, 1.9vw, 30px) * 1.15 * 2);
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -252,36 +240,36 @@
     min-height: calc(clamp(18px, 1.9vw, 30px) * 1.15 * 2);
   }
 
-  /* POINT DESC */
+  /* POINT DESC — heller */
   .point-desc {
-    font-size: clamp(12px, 1vw, 16px);
+    font-size: clamp(13px, 1.05vw, 17px);
     font-weight: 400;
-    color: rgba(255,255,255,0.65);
+    color: rgba(255,255,255,0.78);
     line-height: 1.65;
     flex: 1;
   }
 
   .point-card.featured .point-desc {
-    color: rgba(255,255,255,0.75);
+    color: rgba(255,255,255,0.88);
   }
 
-  /* POINT BOTTOM TAG */
+  /* POINT TAG — heller */
   .point-tag {
     display: inline-block;
-    font-size: clamp(9px, 0.72vw, 12px);
+    font-size: clamp(10px, 0.8vw, 13px);
     font-weight: 700;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    padding: 5px 14px;
+    padding: 6px 16px;
     border-radius: 20px;
     width: fit-content;
     margin-top: auto;
   }
 
   .point-card:not(.featured) .point-tag {
-    background: rgba(255,255,255,0.05);
-    color: rgba(255,255,255,0.4);
-    border: 1px solid rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.07);
+    color: rgba(255,255,255,0.65);
+    border: 1px solid rgba(255,255,255,0.12);
   }
 
   .point-card.featured .point-tag {
@@ -290,7 +278,7 @@
     box-shadow: 0 0 16px rgba(91,143,241,0.4);
   }
 
-  /* ── FOOTER ── */
+  /* ── FOOTER — heller ── */
   .footer {
     padding: 0 4.5vw 2.5vh;
     display: flex;
@@ -305,13 +293,13 @@
     position: absolute;
     top: 0; left: 4.5vw; right: 4.5vw;
     height: 1px;
-    background: rgba(255,255,255,0.12);
+    background: rgba(255,255,255,0.15);
   }
 
   .footer-text {
-    font-size: clamp(10px, 0.78vw, 13px);
+    font-size: clamp(11px, 0.9vw, 15px);
     font-weight: 500;
-    color: rgba(255,255,255,0.6);
+    color: rgba(255,255,255,0.75);
     letter-spacing: 0.08em;
     padding-top: 1.5vh;
   }
@@ -341,7 +329,6 @@
 
       <div class="points">
 
-        <!-- PUNKT 01 -->
         <div class="point-card">
           <div class="point-num">01</div>
           <div class="point-icon">&#9881;</div>
@@ -350,7 +337,6 @@
           <div class="point-tag">Projektspezifisch</div>
         </div>
 
-        <!-- PUNKT 02 — FEATURED -->
         <div class="point-card featured">
           <div class="point-num">02</div>
           <div class="point-icon">&#8594;</div>
@@ -359,7 +345,6 @@
           <div class="point-tag">Das neubau.marketing System</div>
         </div>
 
-        <!-- PUNKT 03 -->
         <div class="point-card">
           <div class="point-num">03</div>
           <div class="point-icon">&#8635;</div>
