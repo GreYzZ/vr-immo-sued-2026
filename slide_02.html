@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Slide 02 – neubau.marketing</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,700;0,900;1,700;1,900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    font-family: 'Roboto', sans-serif;
+    background: #2c313c !important;
+    color: #ffffff;
+  }
+
+  .slide-wrap {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #2c313c;
+    overflow: hidden;
+    z-index: 0;
+  }
+
+  /* ── BACKGROUND — exakt wie Slide 1 ── */
+  .bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80vw 70vh at 80% -15%, rgba(91,143,241,0.12) 0%, transparent 55%),
+      radial-gradient(ellipse 50vw 50vh at -10% 95%, rgba(91,143,241,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 40vw 40vh at 50% 50%, rgba(91,143,241,0.04) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+  }
+
+  .slide {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    z-index: 1;
+  }
+
+  /* ── HEADER — identisch Slide 1 ── */
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 3vh 4.5vw 0;
+    flex-shrink: 0;
+  }
+
+  .brand {
+    font-size: clamp(13px, 1.1vw, 18px);
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    color: #ffffff;
+  }
+  .brand span { color: #5b8ff1; }
+
+  .slide-num {
+    font-size: clamp(11px, 0.85vw, 14px);
+    letter-spacing: 0.14em;
+    color: rgba(255,255,255,0.55);
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+
+  /* ── BODY ── */
+  .body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 3vh 4.5vw 2vh;
+    min-height: 0;
+    justify-content: center;
+    gap: 4vh;
+  }
+
+  .top { flex-shrink: 0; }
+
+  /* ── EYEBROW — identisch Slide 1 ── */
+  .eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 1vw;
+    font-size: clamp(10px, 0.8vw, 13px);
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #5b8ff1;
+    margin-bottom: 3.5vh; /* identisch Slide 1 */
+  }
+  .eyebrow::before,
+  .eyebrow::after {
+    content: '';
+    height: 1px;
+    width: 2.5vw;
+    background: rgba(91,143,241,0.5);
+    flex-shrink: 0;
+  }
+
+  .headline {
+    font-size: clamp(30px, 4.4vw, 68px);
+    font-weight: 900;
+    line-height: 1.05;
+    color: #ffffff;
+  }
+
+  /* ── CARDS ── */
+  .cards {
+    display: flex;
+    gap: 1.5vw;
+    align-items: stretch;
+  }
+
+  .card {
+    flex: 1;
+    min-width: 0;
+    border-radius: 16px;
+    padding: clamp(18px, 2.2vh, 30px) clamp(16px, 1.8vw, 28px);
+    display: flex;
+    flex-direction: column;
+    gap: clamp(10px, 1.4vh, 16px);
+    border: 1px solid rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.03);
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* top glow line */
+  .card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 8%; right: 8%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(91,143,241,0.25), transparent);
+  }
+
+  .card.center {
+    background: linear-gradient(160deg, #1f2535 0%, #252d40 100%);
+    border-color: rgba(91,143,241,0.3);
+    box-shadow:
+      0 0 60px rgba(91,143,241,0.10),
+      inset 0 0 40px rgba(91,143,241,0.04);
+  }
+
+  .card.center::after {
+    left: 5%; right: 5%;
+    background: linear-gradient(90deg, transparent, rgba(91,143,241,0.7), transparent);
+  }
+
+  .card.center::before {
+    content: '';
+    position: absolute;
+    top: -80px; left: 50%;
+    transform: translateX(-50%);
+    width: 240px; height: 240px;
+    background: radial-gradient(circle, rgba(91,143,241,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  /* CARD NUM — CSS Linie statt Zeichen */
+  .card-num {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: clamp(9px, 0.7vw, 11px);
+    letter-spacing: 0.15em;
+    color: rgba(255,255,255,0.25);
+    font-weight: 700;
+  }
+
+  .card-num::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(255,255,255,0.08);
+  }
+
+  .card.center .card-num {
+    color: rgba(91,143,241,0.6);
+  }
+
+  .card.center .card-num::after {
+    background: rgba(91,143,241,0.15);
+  }
+
+  /* CARD TAG */
+  .card-tag {
+    display: inline-block;
+    font-size: clamp(8px, 0.65vw, 10px);
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 20px;
+    width: fit-content;
+  }
+
+  .tag-truth {
+    background: rgba(255,255,255,0.05);
+    color: rgba(255,255,255,0.5);
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .tag-approach {
+    background: #5b8ff1;
+    color: #ffffff;
+    box-shadow: 0 0 16px rgba(91,143,241,0.4);
+  }
+
+  .tag-result {
+    background: rgba(91,143,241,0.1);
+    color: #5b8ff1;
+    border: 1px solid rgba(91,143,241,0.2);
+  }
+
+  /* CARD TITLE — alle zweiзeilig erzwungen */
+  .card-title {
+    font-size: clamp(15px, 1.55vw, 24px);
+    font-weight: 900;
+    line-height: 1.2;
+    color: #ffffff;
+    /* Genau 2 Zeilen */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    min-height: calc(clamp(15px, 1.55vw, 24px) * 1.2 * 2);
+  }
+
+  .card.center .card-title {
+    font-size: clamp(17px, 1.85vw, 29px);
+    font-style: italic;
+    min-height: calc(clamp(17px, 1.85vw, 29px) * 1.2 * 2);
+  }
+
+  /* CARD DESC — alle zweiзeilig erzwungen */
+  .card-desc {
+    font-size: clamp(11px, 0.88vw, 14px);
+    font-weight: 400;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.55;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    min-height: calc(clamp(11px, 0.88vw, 14px) * 1.55 * 2);
+  }
+
+  /* STAT BOX */
+  .card-stat {
+    padding: clamp(10px, 1.2vh, 16px) clamp(12px, 1.2vw, 18px);
+    border-radius: 10px;
+    background: rgba(255,255,255,0.04);
+    display: flex;
+    align-items: center;
+    gap: clamp(8px, 1vw, 14px);
+    border: 1px solid rgba(255,255,255,0.06);
+    margin-top: auto;
+  }
+
+  .card.center .card-stat {
+    background: rgba(91,143,241,0.08);
+    border-color: rgba(91,143,241,0.15);
+    box-shadow: 0 0 20px rgba(91,143,241,0.06);
+  }
+
+  .stat-val {
+    font-size: clamp(20px, 2.2vw, 36px);
+    font-weight: 900;
+    white-space: nowrap;
+    line-height: 1;
+    background: linear-gradient(135deg, #5b8ff1 0%, #7aaaf5 60%, #3d5a9e 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    filter: drop-shadow(0 0 8px rgba(91,143,241,0.3));
+  }
+
+  .card.center .stat-val {
+    font-size: clamp(24px, 2.6vw, 42px);
+  }
+
+  .stat-divider {
+    width: 1px;
+    align-self: stretch;
+    background: rgba(255,255,255,0.1);
+    flex-shrink: 0;
+  }
+
+  .card.center .stat-divider {
+    background: rgba(91,143,241,0.25);
+  }
+
+  .stat-lbl {
+    font-size: clamp(10px, 0.78vw, 13px);
+    font-weight: 500;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.4;
+  }
+
+  /* ── FOOTER — identisch Slide 1 ── */
+  .footer {
+    padding: 0 4.5vw 2.5vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  .footer::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 4.5vw; right: 4.5vw;
+    height: 1px;
+    background: rgba(255,255,255,0.12);
+  }
+
+  .footer-text {
+    font-size: clamp(10px, 0.78vw, 13px);
+    font-weight: 500;
+    color: rgba(255,255,255,0.6);
+    letter-spacing: 0.08em;
+    padding-top: 1.5vh;
+  }
+</style>
+</head>
+<body>
+
+<div class="slide-wrap">
+  <div class="bg"></div>
+
+  <div class="slide">
+
+    <div class="header">
+      <div class="brand">neubau<span>.</span>marketing</div>
+      <div class="slide-num">02 / 08</div>
+    </div>
+
+    <div class="body">
+
+      <div class="top">
+        <div class="eyebrow">Warum neubau.marketing</div>
+        <div class="headline">Mehr Anfragen l&ouml;sen Dein Problem nicht.</div>
+      </div>
+
+      <div class="cards">
+
+        <!-- CARD 01 -->
+        <div class="card">
+          <div class="card-num">01</div>
+          <div class="card-tag tag-truth">Die unbequeme Wahrheit</div>
+          <div class="card-title">Mehr Anfragen l&ouml;sen<br>Dein Problem nicht.</div>
+          <div class="card-desc">Die meisten haben kein Anfragen-Problem &mdash;<br>sie haben kein System.</div>
+          <div class="card-stat">
+            <div class="stat-val">~70%</div>
+            <div class="stat-divider"></div>
+            <div class="stat-lbl">aller Anfragen werden nie strukturiert nachverfolgt</div>
+          </div>
+        </div>
+
+        <!-- CARD 02 CENTER -->
+        <div class="card center">
+          <div class="card-num">02</div>
+          <div class="card-tag tag-approach">Unser Ansatz</div>
+          <div class="card-title">80% Vertrieb.<br>20% Kampagne.</div>
+          <div class="card-desc">Wir optimieren nicht nur die Kampagne &mdash;<br>wir bauen den gesamten Vertriebsprozess.</div>
+          <div class="card-stat">
+            <div class="stat-val">100%</div>
+            <div class="stat-divider"></div>
+            <div class="stat-lbl">Kampagne, CRM, Beratung &amp; Schulung aus einer Hand</div>
+          </div>
+        </div>
+
+        <!-- CARD 03 -->
+        <div class="card">
+          <div class="card-num">03</div>
+          <div class="card-tag tag-result">Das Ergebnis</div>
+          <div class="card-title">Planbare Abschl&uuml;sse.<br>In Echtzeit.</div>
+          <div class="card-desc">&#8212; Einzeiler folgt &#8212;<br>&nbsp;</div>
+          <div class="card-stat">
+            <div class="stat-val">&oslash;&thinsp;21</div>
+            <div class="stat-divider"></div>
+            <div class="stat-lbl">Tage von der ersten Anfrage bis zum ersten Abschluss</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="footer">
+      <div class="footer-text">Neobau Digital GmbH &middot; neubau.marketing</div>
+      <div class="footer-text">Vertraulich &middot; VR-Immo S&uuml;d 2026</div>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>
