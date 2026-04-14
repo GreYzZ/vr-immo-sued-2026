@@ -12,7 +12,7 @@
     height: 100vh;
     overflow: hidden;
     background: #2c313c;
-    font-family: 'Roboto', sans-serif;
+    font-family: sans-serif;
   }
 
   .pres-wrap {
@@ -24,57 +24,72 @@
     z-index: 0;
   }
 
-  /* ── IFRAME CONTAINER ── */
-  #slide-container {
+  /* ── IFRAME POOL — alle Slides vorgeladen ── */
+  .slide-frame {
     position: absolute;
     inset: 0;
-    width: 100%;
-    height: 100%;
-  }
-
-  #slide-container iframe {
     width: 100%;
     height: 100%;
     border: none;
     display: block;
-  }
-
-  /* ── LOADING OVERLAY ── */
-  #loading {
-    position: absolute;
-    inset: 0;
-    background: #2c313c;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 50;
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.2s;
+    transition: opacity 0.4s ease;
   }
 
-  #loading.visible {
+  .slide-frame.active {
     opacity: 1;
     pointer-events: all;
   }
 
-  .loading-dot {
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    background: #5b8ff1;
-    animation: loadblink 1.2s infinite;
-  }
-  .loading-dot:nth-child(2) { animation-delay: 0.2s; }
-  .loading-dot:nth-child(3) { animation-delay: 0.4s; }
-
-  @keyframes loadblink {
-    0%,100% { opacity: 0.2; transform: scale(0.8); }
-    50%      { opacity: 1;   transform: scale(1.2); }
-  }
-
-  .loading-dots {
+  /* ── INITIAL LOADING SCREEN ── */
+  #init-loading {
+    position: fixed;
+    inset: 0;
+    background: #2c313c;
     display: flex;
-    gap: 8px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3vh;
+    z-index: 200;
+    transition: opacity 0.6s ease;
+  }
+
+  #init-loading.hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .init-logo {
+    width: clamp(160px, 16vw, 260px);
+    height: auto;
+    opacity: 0.9;
+  }
+
+  .init-bar-wrap {
+    width: clamp(160px, 18vw, 280px);
+    height: 2px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .init-bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #5b8ff1, #7aaaf5);
+    border-radius: 2px;
+    transition: width 0.15s ease;
+  }
+
+  .init-label {
+    font-family: 'Roboto', sans-serif;
+    font-size: clamp(10px, 0.8vw, 13px);
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
   }
 
   /* ── NAV BUTTONS ── */
@@ -94,7 +109,7 @@
     align-items: center;
     justify-content: center;
     z-index: 100;
-    transition: background 0.2s, border-color 0.2s, opacity 0.2s, transform 0.2s;
+    transition: background 0.2s, border-color 0.2s, opacity 0.3s, transform 0.2s;
     backdrop-filter: blur(8px);
     opacity: 0.4;
   }
@@ -114,7 +129,7 @@
   #btn-prev { left: 1.5vw; }
   #btn-next { right: 1.5vw; }
 
-  /* ── SLIDE COUNTER ── */
+  /* ── SLIDE COUNTER DOTS ── */
   #counter {
     position: fixed;
     bottom: 2.5vh;
@@ -147,31 +162,31 @@
 </head>
 <body>
 
-<div class="pres-wrap">
+<div class="pres-wrap" id="pres-wrap">
+  <!-- iframes werden hier per JS eingefügt -->
+</div>
 
-  <!-- Slide Container -->
-  <div id="slide-container"></div>
+<!-- Navigation -->
+<button class="nav-btn hidden" id="btn-prev">&#8592;</button>
+<button class="nav-btn" id="btn-next">&#8594;</button>
 
-  <!-- Loading -->
-  <div id="loading">
-    <div class="loading-dots">
-      <div class="loading-dot"></div>
-      <div class="loading-dot"></div>
-      <div class="loading-dot"></div>
-    </div>
+<!-- Counter Dots -->
+<div id="counter"></div>
+
+<!-- Initial Loading Screen -->
+<div id="init-loading">
+  <img
+    class="init-logo"
+    src="https://ik.imagekit.io/ViewRStudio/Neobau%20Digital%20GmbH/Grafik/Logo/1.png"
+    alt="neubau.marketing"
+  />
+  <div class="init-bar-wrap">
+    <div class="init-bar" id="init-bar"></div>
   </div>
-
-  <!-- Navigation -->
-  <button class="nav-btn hidden" id="btn-prev">&#8592;</button>
-  <button class="nav-btn" id="btn-next">&#8594;</button>
-
-  <!-- Slide Counter Dots -->
-  <div id="counter"></div>
-
+  <div class="init-label" id="init-label">Präsentation wird geladen&hellip;</div>
 </div>
 
 <script>
-  // ── SLIDE URLS ──
   const BASE = 'https://greyzz.github.io/vr-immo-sued-2026/';
   const SLIDES = [
     BASE + 'slide_00.html',
@@ -187,14 +202,18 @@
   ];
 
   let current = 0;
+  let isTransitioning = false;
+  const frames = [];
 
-  const container = document.getElementById('slide-container');
-  const loading   = document.getElementById('loading');
+  const presWrap  = document.getElementById('pres-wrap');
   const btnPrev   = document.getElementById('btn-prev');
   const btnNext   = document.getElementById('btn-next');
   const counter   = document.getElementById('counter');
+  const initLoad  = document.getElementById('init-loading');
+  const initBar   = document.getElementById('init-bar');
+  const initLabel = document.getElementById('init-label');
 
-  // ── COUNTER DOTS aufbauen ──
+  // ── COUNTER DOTS ──
   SLIDES.forEach((_, i) => {
     const dot = document.createElement('div');
     dot.className = 'counter-dot' + (i === 0 ? ' active' : '');
@@ -202,6 +221,37 @@
     counter.appendChild(dot);
   });
 
+  // ── ALLE IFRAMES VORAB ERSTELLEN & LADEN ──
+  let loadedCount = 0;
+
+  SLIDES.forEach((url, i) => {
+    const iframe = document.createElement('iframe');
+    iframe.className = 'slide-frame' + (i === 0 ? ' active' : '');
+    iframe.src = url;
+    iframe.setAttribute('loading', 'eager');
+
+    iframe.onload = () => {
+      loadedCount++;
+      const pct = Math.round((loadedCount / SLIDES.length) * 100);
+      initBar.style.width = pct + '%';
+      initLabel.textContent = pct < 100
+        ? `Lade Slides... ${pct}%`
+        : 'Bereit.';
+
+      // Alle geladen → Loading Screen ausblenden
+      if (loadedCount === SLIDES.length) {
+        setTimeout(() => {
+          initLoad.classList.add('hidden');
+          setTimeout(() => initLoad.remove(), 700);
+        }, 400);
+      }
+    };
+
+    presWrap.appendChild(iframe);
+    frames.push(iframe);
+  });
+
+  // ── NAVIGATION ──
   function updateDots() {
     document.querySelectorAll('.counter-dot').forEach((d, i) => {
       d.classList.toggle('active', i === current);
@@ -215,21 +265,35 @@
 
   function goTo(index) {
     if (index < 0 || index >= SLIDES.length) return;
-    current = index;
+    if (index === current || isTransitioning) return;
 
-    loading.classList.add('visible');
-    container.innerHTML = '';
+    isTransitioning = true;
 
-    const iframe = document.createElement('iframe');
-    iframe.src = SLIDES[current];
-    iframe.onload = () => loading.classList.remove('visible');
-    container.appendChild(iframe);
+    const prev = frames[current];
+    const next = frames[index];
 
-    updateDots();
-    updateButtons();
+    // Fade out aktuell
+    prev.style.opacity = '0';
+    prev.style.pointerEvents = 'none';
+
+    // Kurze Verzögerung dann Fade in
+    setTimeout(() => {
+      prev.classList.remove('active');
+      next.classList.add('active');
+      next.style.opacity = '1';
+      next.style.pointerEvents = 'all';
+
+      current = index;
+      updateDots();
+      updateButtons();
+
+      setTimeout(() => {
+        isTransitioning = false;
+      }, 400);
+    }, 50);
   }
 
-  // ── KEYBOARD NAVIGATION ──
+  // ── KEYBOARD ──
   document.addEventListener('keydown', e => {
     if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') {
       e.preventDefault();
@@ -241,12 +305,12 @@
     }
   });
 
-  // ── BUTTON NAVIGATION ──
+  // ── BUTTONS ──
   btnPrev.addEventListener('click', () => goTo(current - 1));
   btnNext.addEventListener('click', () => goTo(current + 1));
 
-  // ── START ──
-  goTo(0);
+  // ── INIT ──
+  updateButtons();
 </script>
 
 </body>
