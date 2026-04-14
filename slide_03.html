@@ -55,7 +55,6 @@
     z-index: 1;
   }
 
-  /* ── HEADER ── */
   .header {
     display: flex;
     align-items: center;
@@ -80,7 +79,6 @@
     font-weight: 700;
   }
 
-  /* ── BODY ── */
   .body {
     flex: 1;
     display: flex;
@@ -91,13 +89,11 @@
     gap: 5vh;
   }
 
-  /* ── TOP ── */
   .top {
     text-align: center;
     flex-shrink: 0;
   }
 
-  /* Eyebrow — identisch Slide 1 & 2 */
   .eyebrow {
     display: flex;
     align-items: center;
@@ -134,7 +130,6 @@
     color: transparent;
   }
 
-  /* ── LOGO GRID ── */
   .logo-grid {
     display: flex;
     flex-wrap: wrap;
@@ -144,7 +139,6 @@
     max-width: 90vw;
   }
 
-  /* BASE LOGO CARD */
   .logo-card {
     border-radius: 14px;
     border: 1px solid rgba(255,255,255,0.07);
@@ -167,7 +161,6 @@
     background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
   }
 
-  /* HIGHLIGHTED — Bank 1 Saar & BSK */
   .logo-card.highlight {
     border-color: rgba(91,143,241,0.35);
     background: linear-gradient(145deg, rgba(91,143,241,0.08) 0%, rgba(91,143,241,0.02) 100%);
@@ -183,7 +176,6 @@
     background: linear-gradient(90deg, transparent, rgba(91,143,241,0.5), transparent);
   }
 
-  /* CASE BADGE */
   .case-badge {
     position: absolute;
     top: 10px; right: 12px;
@@ -197,7 +189,6 @@
     color: #ffffff;
   }
 
-  /* MORE CARD — gestrichelt */
   .logo-card.more {
     border: 1px dashed rgba(255,255,255,0.15);
     background: transparent;
@@ -205,7 +196,6 @@
 
   .logo-card.more::after { display: none; }
 
-  /* LOGO PLACEHOLDER / NAME */
   .logo-name {
     font-size: clamp(11px, 0.95vw, 15px);
     font-weight: 700;
@@ -221,25 +211,24 @@
   }
 
   .logo-card.more .logo-name {
-    color: rgba(255,255,255,0.25);
+    color: rgba(255,255,255,0.35);
     font-style: italic;
-    font-size: clamp(11px, 0.9vw, 14px);
+    font-size: clamp(12px, 1vw, 15px);
   }
 
-  /* LOGO IMAGE */
   .logo-card img {
     max-width: 80%;
     max-height: 5.5vh;
     object-fit: contain;
-    opacity: 0.45;
+    opacity: 0.55;
   }
 
   .logo-card.highlight img {
-    opacity: 0.85;
+    opacity: 0.9;
     max-height: 6.5vh;
   }
 
-  /* ── FOOTER ── */
+  /* ── FOOTER — heller ── */
   .footer {
     padding: 0 4.5vw 2.5vh;
     display: flex;
@@ -254,13 +243,13 @@
     position: absolute;
     top: 0; left: 4.5vw; right: 4.5vw;
     height: 1px;
-    background: rgba(255,255,255,0.12);
+    background: rgba(255,255,255,0.15);
   }
 
   .footer-text {
-    font-size: clamp(10px, 0.78vw, 13px);
+    font-size: clamp(11px, 0.9vw, 15px);
     font-weight: 500;
-    color: rgba(255,255,255,0.6);
+    color: rgba(255,255,255,0.75);
     letter-spacing: 0.08em;
     padding-top: 1.5vh;
   }
@@ -287,25 +276,22 @@
 
       <div class="logo-grid">
 
-        <!-- HIGHLIGHTED: Bank 1 Saar -->
         <div class="logo-card highlight">
           <div class="case-badge">Case Study</div>
           <img src="https://ik.imagekit.io/ViewRStudio/Neobau%20Digital%20GmbH/Grafik/Kundenlogos/Kunde%20-%20Bank1Saar.png" alt="Bank 1 Saar Immobilien GmbH">
         </div>
 
-        <!-- HIGHLIGHTED: BSK / Sparkasse Berlin -->
         <div class="logo-card highlight">
           <div class="case-badge">Case Study</div>
           <img src="https://ik.imagekit.io/ViewRStudio/Neobau%20Digital%20GmbH/Grafik/Kundenlogos/Kunde%20-%20BSK%20Immobilien.png" alt="BSK Immobilien">
         </div>
 
-        <!-- REST -->
         <div class="logo-card">
           <img src="https://ik.imagekit.io/ViewRStudio/Neobau%20Digital%20GmbH/Grafik/Kundenlogos/Kunde%20-%20City%20Immobilien.png" alt="City Immobilien GmbH">
         </div>
 
         <div class="logo-card">
-         <img src="https://ik.imagekit.io/ViewRStudio/Neobau%20Digital%20GmbH/Grafik/Kundenlogos/Kunde%20-%20Bosch.png" alt="bosch & co.">
+          <img src="https://ik.imagekit.io/ViewRStudio/Neobau%20Digital%20GmbH/Grafik/Kundenlogos/Kunde%20-%20Bosch.png" alt="bosch &amp; co.">
         </div>
 
         <div class="logo-card">
@@ -328,7 +314,6 @@
           <img src="https://ik.imagekit.io/ViewRStudio/Neobau%20Digital%20GmbH/Grafik/Kundenlogos/Kunde%20-%20Wobita.png" alt="Wohnung zum halben Preis">
         </div>
 
-        <!-- MEHR -->
         <div class="logo-card more">
           <div class="logo-name">+ unz&auml;hlige<br>weitere</div>
         </div>
