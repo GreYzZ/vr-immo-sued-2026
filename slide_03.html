@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Slide 03 – neubau.marketing</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,700;0,900;1,700;1,900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    font-family: 'Roboto', sans-serif;
+    background: #2c313c !important;
+    color: #ffffff;
+  }
+
+  .slide-wrap {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #2c313c;
+    overflow: hidden;
+    z-index: 0;
+  }
+
+  .bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80vw 70vh at 80% -15%, rgba(91,143,241,0.12) 0%, transparent 55%),
+      radial-gradient(ellipse 50vw 50vh at -10% 95%, rgba(91,143,241,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 40vw 40vh at 50% 50%, rgba(91,143,241,0.04) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+  }
+
+  .slide {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    z-index: 1;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 3vh 4.5vw 0;
+    flex-shrink: 0;
+  }
+
+  .brand {
+    font-size: clamp(13px, 1.1vw, 18px);
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    color: #ffffff;
+  }
+  .brand span { color: #5b8ff1; }
+
+  .slide-num {
+    font-size: clamp(11px, 0.85vw, 14px);
+    letter-spacing: 0.14em;
+    color: rgba(255,255,255,0.55);
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+
+  /* ── BODY ── */
+  .body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3vh 4.5vw 2vh;
+    gap: 5vh;
+  }
+
+  /* ── TOP ── */
+  .top {
+    text-align: center;
+    flex-shrink: 0;
+  }
+
+  /* Eyebrow — identisch Slide 1 & 2 */
+  .eyebrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1vw;
+    font-size: clamp(10px, 0.8vw, 13px);
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #5b8ff1;
+    margin-bottom: 3.5vh;
+  }
+  .eyebrow::before,
+  .eyebrow::after {
+    content: '';
+    height: 1px;
+    width: 2.5vw;
+    background: rgba(91,143,241,0.5);
+    flex-shrink: 0;
+  }
+
+  .headline {
+    font-size: clamp(28px, 4vw, 62px);
+    font-weight: 900;
+    line-height: 1.05;
+    color: #ffffff;
+  }
+
+  .headline .hl {
+    font-style: italic;
+    background: linear-gradient(135deg, #5b8ff1 0%, #7aaaf5 50%, #3d5a9e 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* ── LOGO GRID ── */
+  .logo-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.2vw;
+    justify-content: center;
+    align-items: stretch;
+    max-width: 90vw;
+  }
+
+  /* BASE LOGO CARD */
+  .logo-card {
+    border-radius: 14px;
+    border: 1px solid rgba(255,255,255,0.07);
+    background: rgba(255,255,255,0.03);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2vh 2vw;
+    width: 13vw;
+    min-height: 10vh;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .logo-card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 10%; right: 10%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+  }
+
+  /* HIGHLIGHTED — Bank 1 Saar & BSK */
+  .logo-card.highlight {
+    border-color: rgba(91,143,241,0.35);
+    background: linear-gradient(145deg, rgba(91,143,241,0.08) 0%, rgba(91,143,241,0.02) 100%);
+    box-shadow:
+      0 0 40px rgba(91,143,241,0.08),
+      inset 0 0 30px rgba(91,143,241,0.03);
+    width: 16vw;
+    min-height: 12vh;
+  }
+
+  .logo-card.highlight::after {
+    left: 5%; right: 5%;
+    background: linear-gradient(90deg, transparent, rgba(91,143,241,0.5), transparent);
+  }
+
+  /* CASE BADGE */
+  .case-badge {
+    position: absolute;
+    top: 10px; right: 12px;
+    font-size: clamp(7px, 0.6vw, 9px);
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 20px;
+    background: #5b8ff1;
+    color: #ffffff;
+  }
+
+  /* MORE CARD — gestrichelt */
+  .logo-card.more {
+    border: 1px dashed rgba(255,255,255,0.15);
+    background: transparent;
+  }
+
+  .logo-card.more::after { display: none; }
+
+  /* LOGO PLACEHOLDER / NAME */
+  .logo-name {
+    font-size: clamp(11px, 0.95vw, 15px);
+    font-weight: 700;
+    color: rgba(255,255,255,0.4);
+    text-align: center;
+    line-height: 1.35;
+    letter-spacing: 0.02em;
+  }
+
+  .logo-card.highlight .logo-name {
+    color: rgba(255,255,255,0.8);
+    font-size: clamp(12px, 1.05vw, 17px);
+  }
+
+  .logo-card.more .logo-name {
+    color: rgba(255,255,255,0.25);
+    font-style: italic;
+    font-size: clamp(11px, 0.9vw, 14px);
+  }
+
+  /* LOGO IMAGE */
+  .logo-card img {
+    max-width: 80%;
+    max-height: 5.5vh;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+    opacity: 0.45;
+  }
+
+  .logo-card.highlight img {
+    opacity: 0.85;
+    max-height: 6.5vh;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    padding: 0 4.5vw 2.5vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  .footer::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 4.5vw; right: 4.5vw;
+    height: 1px;
+    background: rgba(255,255,255,0.12);
+  }
+
+  .footer-text {
+    font-size: clamp(10px, 0.78vw, 13px);
+    font-weight: 500;
+    color: rgba(255,255,255,0.6);
+    letter-spacing: 0.08em;
+    padding-top: 1.5vh;
+  }
+</style>
+</head>
+<body>
+
+<div class="slide-wrap">
+  <div class="bg"></div>
+
+  <div class="slide">
+
+    <div class="header">
+      <div class="brand">neubau<span>.</span>marketing</div>
+      <div class="slide-num">03 / 09</div>
+    </div>
+
+    <div class="body">
+
+      <div class="top">
+        <div class="eyebrow">Unsere Partner</div>
+        <div class="headline">Wer uns <span class="hl">vertraut.</span></div>
+      </div>
+
+      <div class="logo-grid">
+
+        <!-- HIGHLIGHTED: Bank 1 Saar -->
+        <div class="logo-card highlight">
+          <div class="case-badge">Case Study</div>
+          <!-- <img src="LOGO_URL" alt="Bank 1 Saar Immobilien GmbH"> -->
+          <div class="logo-name">Bank 1 Saar<br>Immobilien GmbH</div>
+        </div>
+
+        <!-- HIGHLIGHTED: BSK / Sparkasse Berlin -->
+        <div class="logo-card highlight">
+          <div class="case-badge">Case Study</div>
+          <!-- <img src="LOGO_URL" alt="BSK Immobilien"> -->
+          <div class="logo-name">BSK Immobilien<br>Sparkasse Berlin</div>
+        </div>
+
+        <!-- REST -->
+        <div class="logo-card">
+          <!-- <img src="LOGO_URL" alt="City Immobilien GmbH"> -->
+          <div class="logo-name">City Immobilien GmbH</div>
+        </div>
+
+        <div class="logo-card">
+          <!-- <img src="LOGO_URL" alt="bosch & co."> -->
+          <div class="logo-name">bosch &amp; co.</div>
+        </div>
+
+        <div class="logo-card">
+          <!-- <img src="LOGO_URL" alt="hanikabau"> -->
+          <div class="logo-name">hanikabau</div>
+        </div>
+
+        <div class="logo-card">
+          <!-- <img src="LOGO_URL" alt="VR-Nordoberpfalz"> -->
+          <div class="logo-name">VR-Nordoberpfalz</div>
+        </div>
+
+        <div class="logo-card">
+          <!-- <img src="LOGO_URL" alt="Communis Projektbau GmbH"> -->
+          <div class="logo-name">Communis Projektbau GmbH</div>
+        </div>
+
+        <div class="logo-card">
+          <!-- <img src="LOGO_URL" alt="Exklusiv Wohnbau GmbH"> -->
+          <div class="logo-name">Exklusiv Wohnbau GmbH</div>
+        </div>
+
+        <div class="logo-card">
+          <!-- <img src="LOGO_URL" alt="MHV Baupartner"> -->
+          <div class="logo-name">MHV Baupartner</div>
+        </div>
+
+        <!-- MEHR -->
+        <div class="logo-card more">
+          <div class="logo-name">+ unz&auml;hlige<br>weitere</div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="footer">
+      <div class="footer-text">Neobau Digital GmbH &middot; neubau.marketing</div>
+      <div class="footer-text">Vertraulich &middot; VR-Immo S&uuml;d 2026</div>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>
