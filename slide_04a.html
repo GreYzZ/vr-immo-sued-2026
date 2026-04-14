@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Slide 04A – neubau.marketing</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,700;0,900;1,700;1,900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    font-family: 'Roboto', sans-serif;
+    background: #2c313c !important;
+    color: #ffffff;
+  }
+
+  .slide-wrap {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #2c313c;
+    overflow: hidden;
+    z-index: 0;
+  }
+
+  .bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80vw 70vh at 80% -15%, rgba(91,143,241,0.12) 0%, transparent 55%),
+      radial-gradient(ellipse 50vw 50vh at -10% 95%, rgba(91,143,241,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 40vw 40vh at 50% 50%, rgba(91,143,241,0.04) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+  }
+
+  .slide {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    z-index: 1;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 3vh 4.5vw 0;
+    flex-shrink: 0;
+  }
+
+  .brand {
+    font-size: clamp(13px, 1.1vw, 18px);
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    color: #ffffff;
+  }
+  .brand span { color: #5b8ff1; }
+
+  .slide-num {
+    font-size: clamp(11px, 0.85vw, 14px);
+    letter-spacing: 0.14em;
+    color: rgba(255,255,255,0.55);
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+
+  /* ── BODY ── */
+  .body {
+    flex: 1;
+    display: flex;
+    gap: 2.5vw;
+    padding: 2.5vh 4.5vw 2vh;
+    min-height: 0;
+  }
+
+  /* ── LEFT COLUMN ── */
+  .left {
+    width: 28vw;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+  }
+
+  .case-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 1vw;
+    font-size: clamp(10px, 0.8vw, 13px);
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #5b8ff1;
+  }
+  .case-eyebrow::before,
+  .case-eyebrow::after {
+    content: '';
+    height: 1px;
+    width: 1.5vw;
+    background: rgba(91,143,241,0.5);
+    flex-shrink: 0;
+  }
+
+  .case-tag {
+    font-size: clamp(9px, 0.72vw, 11px);
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+  }
+
+  .case-headline {
+    font-size: clamp(20px, 2.4vw, 38px);
+    font-weight: 900;
+    line-height: 1.1;
+  }
+
+  .case-headline .wh { color: #ffffff; }
+  .case-headline .bl {
+    font-style: italic;
+    background: linear-gradient(135deg, #5b8ff1 0%, #7aaaf5 50%, #3d5a9e 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* PROJECT IMAGE */
+  .project-img {
+    height: 18vh;
+    flex-shrink: 0;
+    border-radius: 14px;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid rgba(91,143,241,0.15);
+  }
+
+  .project-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    opacity: 0.85;
+  }
+
+  /* gradient overlay bottom */
+  .project-img::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 50%;
+    background: linear-gradient(transparent, rgba(44,49,60,0.85));
+    pointer-events: none;
+  }
+
+  /* QUOTE */
+  .quote {
+    border-left: 2px solid #5b8ff1;
+    padding: clamp(10px, 1.2vh, 16px) clamp(12px, 1vw, 16px);
+    background: rgba(91,143,241,0.05);
+    border-radius: 0 10px 10px 0;
+    flex-shrink: 0;
+  }
+
+  .quote-text {
+    font-size: clamp(10px, 0.82vw, 13px);
+    font-style: italic;
+    font-weight: 300;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.6;
+    margin-bottom: 0.8vh;
+  }
+
+  .quote-author {
+    font-size: clamp(9px, 0.72vw, 11px);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #5b8ff1;
+  }
+
+  /* ── RIGHT BENTO GRID ── */
+  .right {
+    flex: 1;
+    min-width: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 1.2vw;
+  }
+
+  .bento {
+    border-radius: 14px;
+    border: 1px solid rgba(255,255,255,0.07);
+    background: rgba(255,255,255,0.03);
+    padding: clamp(10px, 1.2vh, 16px) clamp(14px, 1.4vw, 22px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .bento::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 8%; right: 8%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(91,143,241,0.2), transparent);
+  }
+
+  /* HERO BENTO — ROI — spans 2 cols */
+  .bento.hero {
+    grid-column: 1 / 3;
+    background: linear-gradient(145deg, rgba(91,143,241,0.10) 0%, rgba(91,143,241,0.03) 100%);
+    border-color: rgba(91,143,241,0.25);
+    box-shadow:
+      0 0 60px rgba(91,143,241,0.10),
+      inset 0 0 40px rgba(91,143,241,0.04);
+  }
+
+  .bento.hero::after {
+    left: 5%; right: 5%;
+    background: linear-gradient(90deg, transparent, rgba(91,143,241,0.6), transparent);
+  }
+
+  .bento.hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; left: 30%;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(91,143,241,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  /* BUDGET → VOLUME BENTO — spans full width row 1 remaining */
+  .bento.budget {
+    background: rgba(255,255,255,0.03);
+  }
+
+  .bento-label {
+    font-size: clamp(8px, 0.68vw, 11px);
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+  }
+
+  .bento-value {
+    font-weight: 900;
+    line-height: 1;
+    background: linear-gradient(135deg, #5b8ff1 0%, #7aaaf5 60%, #3d5a9e 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    filter: drop-shadow(0 0 12px rgba(91,143,241,0.3));
+  }
+
+  .bento.hero .bento-value {
+    font-size: clamp(36px, 5vw, 80px);
+  }
+
+  .bento:not(.hero) .bento-value {
+    font-size: clamp(22px, 2.8vw, 44px);
+  }
+
+  .bento-sub {
+    font-size: clamp(10px, 0.78vw, 13px);
+    font-weight: 500;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.4;
+    margin-top: 0.5vh;
+  }
+
+  /* BUDGET → VOLUME layout */
+  .budget-row {
+    display: flex;
+    align-items: center;
+    gap: 1vw;
+  }
+
+  .budget-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3vh;
+  }
+
+  .budget-arrow {
+    font-size: clamp(18px, 2vw, 32px);
+    color: rgba(91,143,241,0.5);
+    font-weight: 900;
+    flex-shrink: 0;
+  }
+
+  .budget-value {
+    font-size: clamp(16px, 1.8vw, 28px);
+    font-weight: 900;
+    line-height: 1;
+    background: linear-gradient(135deg, #5b8ff1 0%, #7aaaf5 60%, #3d5a9e 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    filter: drop-shadow(0 0 8px rgba(91,143,241,0.25));
+  }
+
+  .budget-label {
+    font-size: clamp(8px, 0.65vw, 10px);
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    padding: 0 4.5vw 2.5vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  .footer::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 4.5vw; right: 4.5vw;
+    height: 1px;
+    background: rgba(255,255,255,0.12);
+  }
+
+  .footer-text {
+    font-size: clamp(10px, 0.78vw, 13px);
+    font-weight: 500;
+    color: rgba(255,255,255,0.6);
+    letter-spacing: 0.08em;
+    padding-top: 1.5vh;
+  }
+</style>
+</head>
+<body>
+
+<div class="slide-wrap">
+  <div class="bg"></div>
+
+  <div class="slide">
+
+    <div class="header">
+      <div class="brand">neubau<span>.</span>marketing</div>
+      <div class="slide-num">04 / 09</div>
+    </div>
+
+    <div class="body">
+
+      <!-- LEFT -->
+      <div class="left">
+        <div class="case-eyebrow">Case Study</div>
+        <div class="case-tag">Bank 1 Saar Immobilien &middot; Quartier Jenneweg, Saarbr&uuml;cken</div>
+        <div class="case-headline">
+          <span class="wh">Vom Stillstand zur</span><br>
+          <span class="bl">30% Vorverkaufs-Quote.</span>
+        </div>
+
+        <div class="project-img">
+          <img
+            src="https://ik.imagekit.io/ViewRStudio/Bank1Saar/Mailvorlagen/Hero-Bilder/Visualisierung%20Objektbild%20Entwurf1.jpg"
+            alt="Quartier Jenneweg"
+          />
+        </div>
+
+        <div class="quote">
+          <div class="quote-text">„Vor ein paar Monaten h&auml;tte ich mir niemals gedacht, dass wir die 30% Vorverkaufs-Quote erreichen. Mit den Anfragen von euch kann das Projekt nun realisiert werden."</div>
+          <div class="quote-author">Sven Pfeifer &mdash; Bank 1 Saar Immobilien</div>
+        </div>
+      </div>
+
+      <!-- RIGHT BENTO -->
+      <div class="right">
+
+        <!-- HERO: ROI -->
+        <div class="bento hero">
+          <div class="bento-label">Return on Investment</div>
+          <div class="bento-value">~365x</div>
+          <div class="bento-sub">5.207 &euro; Mediabudget &rarr; ~1,9 Mio. &euro; Verkaufsvolumen</div>
+        </div>
+
+        <!-- Budget → Volume -->
+        <div class="bento budget">
+          <div class="bento-label">Mediabudget &rarr; Volumen</div>
+          <div class="budget-row">
+            <div class="budget-item">
+              <div class="budget-value">5.207 &euro;</div>
+              <div class="budget-label">Mediabudget</div>
+            </div>
+            <div class="budget-arrow">&#8594;</div>
+            <div class="budget-item">
+              <div class="budget-value">~1,9 Mio.</div>
+              <div class="budget-label">Verkaufsvolumen</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 301 Anfragen -->
+        <div class="bento">
+          <div class="bento-label">Qualifizierte Anfragen</div>
+          <div class="bento-value">301</div>
+          <div class="bento-sub">in 5 Monaten</div>
+        </div>
+
+        <!-- CPL -->
+        <div class="bento">
+          <div class="bento-label">Kosten pro Anfrage</div>
+          <div class="bento-value">17,30 &euro;</div>
+          <div class="bento-sub">Cost per Lead</div>
+        </div>
+
+        <!-- Einheiten -->
+        <div class="bento">
+          <div class="bento-label">Gesicherte Einheiten</div>
+          <div class="bento-value">7</div>
+          <div class="bento-sub">3 notariell &middot; 4 unterschriebene Kaufabsicht</div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="footer">
+      <div class="footer-text">Neobau Digital GmbH &middot; neubau.marketing</div>
+      <div class="footer-text">Vertraulich &middot; VR-Immo S&uuml;d 2026</div>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>
