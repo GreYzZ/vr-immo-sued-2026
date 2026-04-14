@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>neubau.marketing – VR-Immo Süd 2026</title>
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background: #2c313c;
+    font-family: 'Roboto', sans-serif;
+  }
+
+  .pres-wrap {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #2c313c;
+    z-index: 0;
+  }
+
+  /* ── IFRAME CONTAINER ── */
+  #slide-container {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  #slide-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+  }
+
+  /* ── LOADING OVERLAY ── */
+  #loading {
+    position: absolute;
+    inset: 0;
+    background: #2c313c;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 50;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
+  }
+
+  #loading.visible {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .loading-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: #5b8ff1;
+    animation: loadblink 1.2s infinite;
+  }
+  .loading-dot:nth-child(2) { animation-delay: 0.2s; }
+  .loading-dot:nth-child(3) { animation-delay: 0.4s; }
+
+  @keyframes loadblink {
+    0%,100% { opacity: 0.2; transform: scale(0.8); }
+    50%      { opacity: 1;   transform: scale(1.2); }
+  }
+
+  .loading-dots {
+    display: flex;
+    gap: 8px;
+  }
+
+  /* ── NAV BUTTONS ── */
+  .nav-btn {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    width: clamp(36px, 3.5vw, 52px);
+    height: clamp(36px, 3.5vw, 52px);
+    border-radius: 50%;
+    background: rgba(91,143,241,0.15);
+    border: 1px solid rgba(91,143,241,0.3);
+    color: #ffffff;
+    font-size: clamp(16px, 1.5vw, 22px);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    transition: background 0.2s, border-color 0.2s, opacity 0.2s, transform 0.2s;
+    backdrop-filter: blur(8px);
+    opacity: 0.4;
+  }
+
+  .nav-btn:hover {
+    background: rgba(91,143,241,0.35);
+    border-color: rgba(91,143,241,0.7);
+    opacity: 1;
+    transform: translateY(-50%) scale(1.08);
+  }
+
+  .nav-btn.hidden {
+    opacity: 0 !important;
+    pointer-events: none;
+  }
+
+  #btn-prev { left: 1.5vw; }
+  #btn-next { right: 1.5vw; }
+
+  /* ── SLIDE COUNTER ── */
+  #counter {
+    position: fixed;
+    bottom: 2.5vh;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    z-index: 100;
+    opacity: 0.4;
+    transition: opacity 0.2s;
+  }
+
+  #counter:hover { opacity: 1; }
+
+  .counter-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.3);
+    transition: background 0.3s, transform 0.3s;
+    cursor: pointer;
+  }
+
+  .counter-dot.active {
+    background: #5b8ff1;
+    transform: scale(1.4);
+    box-shadow: 0 0 8px rgba(91,143,241,0.6);
+  }
+</style>
+</head>
+<body>
+
+<div class="pres-wrap">
+
+  <!-- Slide Container -->
+  <div id="slide-container"></div>
+
+  <!-- Loading -->
+  <div id="loading">
+    <div class="loading-dots">
+      <div class="loading-dot"></div>
+      <div class="loading-dot"></div>
+      <div class="loading-dot"></div>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <button class="nav-btn hidden" id="btn-prev">&#8592;</button>
+  <button class="nav-btn" id="btn-next">&#8594;</button>
+
+  <!-- Slide Counter Dots -->
+  <div id="counter"></div>
+
+</div>
+
+<script>
+  // ── SLIDE URLS ──
+  const BASE = 'https://greyzz.github.io/vr-immo-sued-2026/';
+  const SLIDES = [
+    BASE + 'slide_01.html',
+    BASE + 'slide_02.html',
+    BASE + 'slide_03.html',
+    BASE + 'slide_04a.html',
+    BASE + 'slide_04b.html',
+    BASE + 'slide_05a.html',
+    BASE + 'slide_05b.html',
+    BASE + 'slide_06.html',
+    BASE + 'slide_07.html',
+  ];
+
+  let current = 0;
+
+  const container = document.getElementById('slide-container');
+  const loading   = document.getElementById('loading');
+  const btnPrev   = document.getElementById('btn-prev');
+  const btnNext   = document.getElementById('btn-next');
+  const counter   = document.getElementById('counter');
+
+  // ── COUNTER DOTS aufbauen ──
+  SLIDES.forEach((_, i) => {
+    const dot = document.createElement('div');
+    dot.className = 'counter-dot' + (i === 0 ? ' active' : '');
+    dot.addEventListener('click', () => goTo(i));
+    counter.appendChild(dot);
+  });
+
+  function updateDots() {
+    document.querySelectorAll('.counter-dot').forEach((d, i) => {
+      d.classList.toggle('active', i === current);
+    });
+  }
+
+  function updateButtons() {
+    btnPrev.classList.toggle('hidden', current === 0);
+    btnNext.classList.toggle('hidden', current === SLIDES.length - 1);
+  }
+
+  function goTo(index) {
+    if (index < 0 || index >= SLIDES.length) return;
+    current = index;
+
+    loading.classList.add('visible');
+    container.innerHTML = '';
+
+    const iframe = document.createElement('iframe');
+    iframe.src = SLIDES[current];
+    iframe.onload = () => loading.classList.remove('visible');
+    container.appendChild(iframe);
+
+    updateDots();
+    updateButtons();
+  }
+
+  // ── KEYBOARD NAVIGATION ──
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') {
+      e.preventDefault();
+      goTo(current + 1);
+    }
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+      e.preventDefault();
+      goTo(current - 1);
+    }
+  });
+
+  // ── BUTTON NAVIGATION ──
+  btnPrev.addEventListener('click', () => goTo(current - 1));
+  btnNext.addEventListener('click', () => goTo(current + 1));
+
+  // ── START ──
+  goTo(0);
+</script>
+
+</body>
+</html>
