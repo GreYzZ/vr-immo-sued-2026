@@ -64,7 +64,7 @@
   }
 
   .brand {
-    font-size: clamp(13px, 1.1vw, 18px);
+    font-size: clamp(14px, 1.1vw, 18px);
     font-weight: 700;
     letter-spacing: 0.07em;
     color: #ffffff;
@@ -72,13 +72,14 @@
   .brand span { color: #5b8ff1; }
 
   .slide-num {
-    font-size: clamp(11px, 0.85vw, 14px);
+    font-size: clamp(12px, 0.95vw, 16px);
     letter-spacing: 0.14em;
     color: rgba(255,255,255,0.55);
     text-transform: uppercase;
     font-weight: 700;
   }
 
+  /* Body vertikal zentriert — wie 04B */
   .body {
     flex: 1;
     display: flex;
@@ -86,15 +87,17 @@
     padding: 2vh 4.5vw 1.5vh;
     gap: 2vh;
     min-height: 0;
+    justify-content: center;
   }
 
   .top { flex-shrink: 0; }
 
+  /* Eyebrow — clamp(12px, 1vw, 16px) */
   .eyebrow {
     display: flex;
     align-items: center;
     gap: 1vw;
-    font-size: clamp(10px, 0.8vw, 13px);
+    font-size: clamp(12px, 1vw, 16px);
     font-weight: 700;
     letter-spacing: 0.22em;
     text-transform: uppercase;
@@ -110,8 +113,9 @@
     flex-shrink: 0;
   }
 
+  /* Headline groß — clamp(32px, 4.5vw, 72px) */
   .headline {
-    font-size: clamp(24px, 3.2vw, 50px);
+    font-size: clamp(32px, 4.5vw, 72px);
     font-weight: 900;
     line-height: 1.05;
     color: #ffffff;
@@ -125,11 +129,11 @@
     color: transparent;
   }
 
+  /* Comparison — kein flex:1, kein min-height — wie 04B */
   .comparison {
-    flex: 1;
     display: flex;
     gap: 1.5vw;
-    min-height: 0;
+    align-items: flex-start;
   }
 
   .before-card {
@@ -137,10 +141,10 @@
     border-radius: 16px;
     border: 1px solid rgba(255,255,255,0.07);
     background: rgba(255,255,255,0.02);
-    padding: clamp(10px, 1.2vh, 16px) clamp(16px, 1.8vw, 24px);
+    padding: clamp(12px, 1.4vh, 18px) clamp(16px, 1.8vw, 24px);
     display: flex;
     flex-direction: column;
-    gap: 1vh;
+    gap: 1.2vh;
     position: relative;
     overflow: hidden;
   }
@@ -158,10 +162,10 @@
     border-radius: 16px;
     border: 1px solid rgba(91,143,241,0.25);
     background: linear-gradient(160deg, rgba(91,143,241,0.08) 0%, rgba(91,143,241,0.02) 100%);
-    padding: clamp(10px, 1.2vh, 16px) clamp(16px, 1.8vw, 24px);
+    padding: clamp(12px, 1.4vh, 18px) clamp(16px, 1.8vw, 24px);
     display: flex;
     flex-direction: column;
-    gap: 1vh;
+    gap: 1.2vh;
     position: relative;
     overflow: hidden;
     box-shadow: 0 0 60px rgba(91,143,241,0.08), inset 0 0 40px rgba(91,143,241,0.03);
@@ -191,8 +195,9 @@
     flex-shrink: 0;
   }
 
+  /* Card-Label — clamp(12px, 1vw, 16px) */
   .card-label {
-    font-size: clamp(10px, 0.8vw, 13px);
+    font-size: clamp(12px, 1vw, 16px);
     font-weight: 700;
     letter-spacing: 0.18em;
     text-transform: uppercase;
@@ -202,19 +207,15 @@
   .before-card .card-label { color: rgba(255,255,255,0.5); }
   .after-card .card-label  { color: #5b8ff1; }
 
-  .card-label-line {
-    flex: 1;
-    height: 1px;
-  }
-
+  .card-label-line { flex: 1; height: 1px; }
   .before-card .card-label-line { background: rgba(255,255,255,0.08); }
   .after-card .card-label-line  { background: rgba(91,143,241,0.2); }
 
+  /* Items — kein flex:1 — wie 04B */
   .items {
     display: flex;
     flex-direction: column;
-    gap: 0.6vh;
-    flex: 1;
+    gap: 1.4vh;
   }
 
   .item {
@@ -233,7 +234,7 @@
     font-size: clamp(10px, 0.85vw, 14px);
     font-weight: 900;
     flex-shrink: 0;
-    margin-top: 0.1vh;
+    margin-top: 0.15vh;
   }
 
   .before-card .item-icon {
@@ -246,26 +247,28 @@
     color: #5b8ff1;
   }
 
+  /* Item-Text — clamp(16px, 1.4vw, 22px) */
   .item-text {
-    font-size: clamp(14px, 1.2vw, 19px);
+    font-size: clamp(16px, 1.4vw, 22px);
     font-weight: 600;
-    line-height: 1.35;
+    line-height: 1.3;
   }
 
   .before-card .item-text { color: rgba(255,255,255,0.88); }
   .after-card .item-text  { color: #ffffff; }
 
+  /* Item-Sub — clamp(13px, 1vw, 16px) */
   .item-sub {
-    font-size: clamp(11px, 0.85vw, 14px);
+    font-size: clamp(13px, 1vw, 16px);
     font-weight: 400;
-    color: rgba(255,255,255,0.55);
+    color: rgba(255,255,255,0.62);
     margin-top: 0.1vh;
     line-height: 1.3;
   }
 
-  .after-card .item-sub { color: rgba(255,255,255,0.65); }
+  .after-card .item-sub { color: rgba(255,255,255,0.72); }
 
-  /* STAT BOX — größer + heller */
+  /* Stat-Box — margin-top 2vh wie 04B */
   .card-stat {
     border-radius: 10px;
     padding: clamp(10px, 1.2vh, 16px) clamp(12px, 1.2vw, 18px);
@@ -273,6 +276,7 @@
     align-items: center;
     gap: clamp(8px, 1vw, 14px);
     flex-shrink: 0;
+    margin-top: 2vh;
   }
 
   .before-card .card-stat {
@@ -286,14 +290,15 @@
     box-shadow: 0 0 20px rgba(91,143,241,0.08);
   }
 
+  /* Stat-Val — clamp(28px, 3vw, 48px) */
   .stat-val {
-    font-size: clamp(24px, 2.6vw, 42px);
+    font-size: clamp(28px, 3vw, 48px);
     font-weight: 900;
     white-space: nowrap;
     line-height: 1;
   }
 
-  .before-card .stat-val { color: rgba(255,255,255,0.4); }
+  .before-card .stat-val { color: rgba(255,255,255,0.55); }
 
   .after-card .stat-val {
     background: linear-gradient(135deg, #5b8ff1 0%, #7aaaf5 60%, #3d5a9e 100%);
@@ -312,14 +317,15 @@
   .before-card .stat-divider { background: rgba(255,255,255,0.1); }
   .after-card .stat-divider  { background: rgba(91,143,241,0.3); }
 
+  /* Stat-Label — clamp(14px, 1.1vw, 18px) */
   .stat-lbl {
-    font-size: clamp(12px, 0.9vw, 15px);
+    font-size: clamp(14px, 1.1vw, 18px);
     font-weight: 500;
     line-height: 1.4;
   }
 
-  .before-card .stat-lbl { color: rgba(255,255,255,0.55); }
-  .after-card .stat-lbl  { color: rgba(255,255,255,0.85); }
+  .before-card .stat-lbl { color: rgba(255,255,255,0.65); }
+  .after-card .stat-lbl  { color: rgba(255,255,255,0.92); }
 
   .arrow-divider {
     display: flex;
@@ -343,7 +349,7 @@
     box-shadow: 0 0 20px rgba(91,143,241,0.1);
   }
 
-  /* ── FOOTER — heller ── */
+  /* ── FOOTER ── */
   .footer {
     padding: 0 4.5vw 2.5vh;
     display: flex;
@@ -362,7 +368,7 @@
   }
 
   .footer-text {
-    font-size: clamp(11px, 0.9vw, 15px);
+    font-size: clamp(12px, 0.95vw, 16px);
     font-weight: 500;
     color: rgba(255,255,255,0.75);
     letter-spacing: 0.08em;
@@ -391,13 +397,11 @@
 
       <div class="comparison">
 
-        <!-- BEFORE -->
         <div class="before-card">
           <div class="card-header">
             <div class="card-label">Davor</div>
             <div class="card-label-line"></div>
           </div>
-
           <div class="items">
             <div class="item">
               <div class="item-icon">&#8722;</div>
@@ -435,7 +439,6 @@
               </div>
             </div>
           </div>
-
           <div class="card-stat">
             <div class="stat-val">~0</div>
             <div class="stat-divider"></div>
@@ -443,18 +446,15 @@
           </div>
         </div>
 
-        <!-- ARROW -->
         <div class="arrow-divider">
           <div class="arrow-circle">&#8594;</div>
         </div>
 
-        <!-- AFTER -->
         <div class="after-card">
           <div class="card-header">
             <div class="card-label">Mit neubau.marketing</div>
             <div class="card-label-line"></div>
           </div>
-
           <div class="items">
             <div class="item">
               <div class="item-icon">&#10003;</div>
@@ -492,7 +492,6 @@
               </div>
             </div>
           </div>
-
           <div class="card-stat">
             <div class="stat-val">142</div>
             <div class="stat-divider"></div>
