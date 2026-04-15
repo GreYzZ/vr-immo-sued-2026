@@ -64,7 +64,7 @@
   }
 
   .brand {
-    font-size: clamp(13px, 1.1vw, 18px);
+    font-size: clamp(14px, 1.1vw, 18px);
     font-weight: 700;
     letter-spacing: 0.07em;
     color: #ffffff;
@@ -72,7 +72,7 @@
   .brand span { color: #5b8ff1; }
 
   .slide-num {
-    font-size: clamp(11px, 0.85vw, 14px);
+    font-size: clamp(12px, 0.95vw, 16px);
     letter-spacing: 0.14em;
     color: rgba(255,255,255,0.55);
     text-transform: uppercase;
@@ -83,7 +83,7 @@
     flex: 1;
     display: flex;
     gap: 2.5vw;
-    padding: 2.5vh 4.5vw 2vh;
+    padding: 2vh 4.5vw 2vh;
     min-height: 0;
   }
 
@@ -96,11 +96,12 @@
     gap: 1.5vh;
   }
 
+  /* Eyebrow — clamp(12px, 1vw, 16px) */
   .case-eyebrow {
     display: flex;
     align-items: center;
     gap: 1vw;
-    font-size: clamp(10px, 0.8vw, 13px);
+    font-size: clamp(12px, 1vw, 16px);
     font-weight: 700;
     letter-spacing: 0.22em;
     text-transform: uppercase;
@@ -115,7 +116,6 @@
     flex-shrink: 0;
   }
 
-  /* Case-Tag — größer, heller */
   .case-tag {
     font-size: clamp(11px, 0.9vw, 14px);
     font-weight: 700;
@@ -127,8 +127,9 @@
     text-overflow: ellipsis;
   }
 
+  /* Headline mittel — clamp(24px, 2.8vw, 44px) */
   .case-headline {
-    font-size: clamp(20px, 2.4vw, 38px);
+    font-size: clamp(24px, 2.8vw, 44px);
     font-weight: 900;
     line-height: 1.1;
   }
@@ -142,10 +143,10 @@
     color: transparent;
   }
 
-  /* PROJECT IMAGE — größer */
+  /* PROJECT IMAGE — flex:1 damit gleiche Linie wie Hero-Box */
   .project-img {
-    height: 22vh;
-    flex-shrink: 0;
+    flex: 1;
+    min-height: 0;
     border-radius: 14px;
     overflow: hidden;
     position: relative;
@@ -174,7 +175,7 @@
     display: inline-flex;
     align-items: center;
     gap: 0.6vw;
-    font-size: clamp(10px, 0.85vw, 14px);
+    font-size: clamp(11px, 0.9vw, 14px);
     font-weight: 700;
     letter-spacing: 0.12em;
     text-transform: uppercase;
@@ -184,6 +185,7 @@
     color: #5b8ff1;
     border: 1px solid rgba(91,143,241,0.25);
     width: fit-content;
+    flex-shrink: 0;
   }
 
   .pulse {
@@ -200,19 +202,20 @@
     50%      { opacity:0.2; box-shadow: none; }
   }
 
-  /* CONTEXT NOTE — größer + heller */
+  /* CONTEXT NOTE */
   .context-note {
     border-left: 2px solid rgba(91,143,241,0.5);
     padding: clamp(10px, 1.2vh, 16px) clamp(12px, 1vw, 16px);
     background: rgba(91,143,241,0.06);
     border-radius: 0 8px 8px 0;
-    margin-top: auto;
+    flex-shrink: 0;
   }
 
+  /* Subline — clamp(13px, 1.05vw, 17px) */
   .context-note p {
-    font-size: clamp(12px, 0.95vw, 15px);
+    font-size: clamp(13px, 1.05vw, 17px);
     font-weight: 400;
-    color: rgba(255,255,255,0.8);
+    color: rgba(255,255,255,0.85);
     line-height: 1.65;
     font-style: italic;
   }
@@ -237,10 +240,12 @@
     border-radius: 14px;
     border: 1px solid rgba(255,255,255,0.07);
     background: rgba(255,255,255,0.03);
-    padding: clamp(12px, 1.4vh, 20px) clamp(14px, 1.4vw, 22px);
+    padding: clamp(12px, 1.3vh, 18px) clamp(14px, 1.4vw, 22px);
     display: flex;
     flex-direction: column;
+    align-items: center;
     justify-content: space-between;
+    text-align: center;
     position: relative;
     overflow: hidden;
   }
@@ -276,16 +281,16 @@
     pointer-events: none;
   }
 
-  /* BENTO LABEL — heller + größer */
+  /* Bento-Label — clamp(12px, 0.95vw, 15px) */
   .bento-label {
-    font-size: clamp(10px, 0.82vw, 13px);
+    font-size: clamp(12px, 0.95vw, 15px);
     font-weight: 700;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.65);
+    color: rgba(255,255,255,0.7);
   }
 
-  /* BENTO VALUE — vertikal zentriert */
+  /* Bento-Value — zentriert */
   .bento-value {
     font-weight: 900;
     line-height: 1;
@@ -297,33 +302,41 @@
     margin: auto 0;
   }
 
-  .bento.hero .bento-value { font-size: clamp(36px, 5vw, 80px); margin: 0; }
-  .bento:not(.hero) .bento-value { font-size: clamp(24px, 3vw, 48px); }
-
-  /* BENTO SUB — heller + größer */
-  .bento-sub {
-    font-size: clamp(11px, 0.88vw, 14px);
-    font-weight: 500;
-    color: rgba(255,255,255,0.75);
-    line-height: 1.4;
-    margin-top: 0.5vh;
+  .bento.hero .bento-value {
+    font-size: clamp(44px, 6.5vw, 100px);
+    margin: 0;
   }
 
-  .budget-row {
+  .bento:not(.hero) .bento-value {
+    font-size: clamp(28px, 3.5vw, 56px);
+  }
+
+  /* Bento-Sub — clamp(12px, 0.95vw, 16px) */
+  .bento-sub {
+    font-size: clamp(12px, 0.95vw, 16px);
+    font-weight: 500;
+    color: rgba(255,255,255,0.78);
+    line-height: 1.4;
+  }
+
+  /* MEDIABUDGET BOX */
+  .budget-col {
     display: flex;
+    flex-direction: column;
+    gap: 0.6vh;
     align-items: center;
-    gap: 1vw;
     margin: auto 0;
   }
 
   .budget-item {
     display: flex;
     flex-direction: column;
-    gap: 0.3vh;
+    gap: 0.2vh;
+    align-items: center;
   }
 
   .budget-value {
-    font-size: clamp(16px, 1.8vw, 28px);
+    font-size: clamp(20px, 2.4vw, 38px);
     font-weight: 900;
     line-height: 1;
     background: linear-gradient(135deg, #5b8ff1 0%, #7aaaf5 60%, #3d5a9e 100%);
@@ -334,14 +347,14 @@
   }
 
   .budget-label {
-    font-size: clamp(9px, 0.72vw, 11px);
+    font-size: clamp(11px, 0.88vw, 14px);
     font-weight: 700;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.5);
+    color: rgba(255,255,255,0.65);
   }
 
-  /* ── FOOTER — heller ── */
+  /* ── FOOTER ── */
   .footer {
     padding: 0 4.5vw 2.5vh;
     display: flex;
@@ -360,7 +373,7 @@
   }
 
   .footer-text {
-    font-size: clamp(11px, 0.9vw, 15px);
+    font-size: clamp(12px, 0.95vw, 16px);
     font-weight: 500;
     color: rgba(255,255,255,0.75);
     letter-spacing: 0.08em;
@@ -422,7 +435,7 @@
 
         <div class="bento">
           <div class="bento-label">Mediabudget</div>
-          <div class="budget-row">
+          <div class="budget-col">
             <div class="budget-item">
               <div class="budget-value">3.141 &euro;</div>
               <div class="budget-label">eingesetzt</div>
