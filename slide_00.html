@@ -52,7 +52,6 @@
     pointer-events: none;
   }
 
-  /* ── CENTER ── */
   .center {
     position: relative;
     z-index: 1;
@@ -65,7 +64,6 @@
     gap: 5vh;
   }
 
-  /* ── LOGO — größer ── */
   .logo-wrap {
     position: relative;
     animation: logofadein 1.5s ease forwards;
@@ -82,7 +80,6 @@
     display: block;
   }
 
-  /* ── DIVIDER ── */
   .divider {
     width: clamp(60px, 6vw, 100px);
     height: 1px;
@@ -95,12 +92,11 @@
     to   { width: clamp(60px, 6vw, 100px); opacity: 1; }
   }
 
-  /* ── EVENT INFO ── */
   .event-info {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1.5vh;
+    gap: 1.8vh;
     animation: infofadein 1.5s ease 0.8s both;
   }
 
@@ -109,23 +105,24 @@
     to   { opacity: 1; transform: translateY(0); }
   }
 
+  /* Eyebrow-Standard: clamp(12px, 1vw, 16px) → event-name ist größer da Hauptinfo */
   .event-name {
-    font-size: clamp(16px, 1.6vw, 26px);
+    font-size: clamp(18px, 1.6vw, 26px);
     font-weight: 700;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.92);
+    color: rgba(255,255,255,0.95);
   }
 
+  /* Subline-Standard angepasst */
   .event-date {
-    font-size: clamp(13px, 1.1vw, 18px);
+    font-size: clamp(16px, 1.3vw, 22px);
     font-weight: 400;
     letter-spacing: 0.14em;
-    color: rgba(255,255,255,0.65);
+    color: rgba(255,255,255,0.75);
     text-transform: uppercase;
   }
 
-  /* ── DOTS — größer ── */
   .dots {
     display: flex;
     gap: 1.2vw;
@@ -150,7 +147,7 @@
     50%       { background: #5b8ff1; transform: scale(1.4); box-shadow: 0 0 12px rgba(91,143,241,0.7); }
   }
 
-  /* ── FOOTER ── */
+  /* Footer — clamp(12px, 0.95vw, 16px) */
   .footer {
     position: absolute;
     bottom: 2.5vh;
@@ -170,9 +167,9 @@
   }
 
   .footer-text {
-    font-size: clamp(11px, 0.9vw, 15px);
+    font-size: clamp(12px, 0.95vw, 16px);
     font-weight: 500;
-    color: rgba(255,255,255,0.7);
+    color: rgba(255,255,255,0.75);
     letter-spacing: 0.08em;
     padding-top: 1.5vh;
   }
