@@ -64,7 +64,7 @@
   }
 
   .brand {
-    font-size: clamp(13px, 1.1vw, 18px);
+    font-size: clamp(14px, 1.1vw, 18px);
     font-weight: 700;
     letter-spacing: 0.07em;
     color: #ffffff;
@@ -72,7 +72,7 @@
   .brand span { color: #5b8ff1; }
 
   .slide-num {
-    font-size: clamp(11px, 0.85vw, 14px);
+    font-size: clamp(12px, 0.95vw, 16px);
     letter-spacing: 0.14em;
     color: rgba(255,255,255,0.55);
     text-transform: uppercase;
@@ -88,7 +88,7 @@
     min-height: 0;
   }
 
-  /* ── LEFT — alles größer ── */
+  /* ── LEFT ── */
   .left {
     flex: 1;
     min-width: 0;
@@ -98,11 +98,12 @@
     gap: 2.8vh;
   }
 
+  /* Eyebrow — clamp(12px, 1vw, 16px) */
   .eyebrow {
     display: flex;
     align-items: center;
     gap: 1vw;
-    font-size: clamp(11px, 0.9vw, 14px);
+    font-size: clamp(12px, 1vw, 16px);
     font-weight: 700;
     letter-spacing: 0.22em;
     text-transform: uppercase;
@@ -117,6 +118,7 @@
     flex-shrink: 0;
   }
 
+  /* Headline groß — clamp(32px, 4.5vw, 72px) */
   .headline {
     font-size: clamp(36px, 5.5vw, 88px);
     font-weight: 900;
@@ -137,9 +139,9 @@
     color: #ffffff;
   }
 
-  /* DEAL TEXT — größer + heller */
+  /* Subline — clamp(16px, 1.3vw, 22px) */
   .deal-text {
-    font-size: clamp(15px, 1.3vw, 22px);
+    font-size: clamp(16px, 1.3vw, 22px);
     font-weight: 400;
     color: rgba(255,255,255,0.85);
     line-height: 1.7;
@@ -151,9 +153,9 @@
     font-weight: 700;
   }
 
-  /* DEAL HIGHLIGHT — größer */
+  /* Deal-Highlight — clamp(18px, 1.8vw, 28px) */
   .deal-highlight {
-    font-size: clamp(20px, 2vw, 32px);
+    font-size: clamp(18px, 1.8vw, 28px);
     font-weight: 900;
     color: #ffffff;
     line-height: 1.35;
@@ -167,7 +169,7 @@
     font-style: italic;
   }
 
-  /* CONTACT ROW — größer + heller */
+  /* Contact Row */
   .contact-row {
     display: flex;
     gap: 2vw;
@@ -180,16 +182,18 @@
     gap: 0.5vh;
   }
 
+  /* Stat-Label — clamp(13px, 1vw, 16px) */
   .contact-label {
-    font-size: clamp(10px, 0.82vw, 13px);
+    font-size: clamp(13px, 1vw, 16px);
     font-weight: 700;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.55);
+    color: rgba(255,255,255,0.58);
   }
 
+  /* Subline — clamp(16px, 1.3vw, 22px) */
   .contact-value {
-    font-size: clamp(14px, 1.1vw, 18px);
+    font-size: clamp(15px, 1.2vw, 20px);
     font-weight: 700;
     color: #ffffff;
     letter-spacing: 0.02em;
@@ -202,7 +206,7 @@
     flex-shrink: 0;
   }
 
-  /* ── RIGHT — QR CARD — größer ── */
+  /* ── RIGHT — QR CARD ── */
   .right {
     width: 28vw;
     flex-shrink: 0;
@@ -246,57 +250,40 @@
     pointer-events: none;
   }
 
-  .qr-placeholder {
+  /* QR Code — weiß via filter */
+  .qr-code {
     width: clamp(160px, 16vw, 250px);
     height: clamp(160px, 16vw, 250px);
-    border-radius: 14px;
-    border: 2px dashed rgba(91,143,241,0.35);
-    background: rgba(91,143,241,0.05);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 1.5vh;
+    display: block;
     position: relative;
     z-index: 1;
+    filter: brightness(0) invert(1);
+    opacity: 0.92;
   }
 
-  .qr-placeholder-icon {
-    font-size: clamp(32px, 3.5vw, 56px);
-    opacity: 0.35;
-  }
-
-  .qr-placeholder-text {
-    font-size: clamp(11px, 0.85vw, 14px);
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.35);
-    text-align: center;
-  }
-
-  /* QR LABEL — größer + heller */
+  /* QR Label — clamp(14px, 1.1vw, 18px) */
   .qr-label {
-    font-size: clamp(13px, 1.05vw, 17px);
+    font-size: clamp(14px, 1.1vw, 18px);
     font-weight: 700;
-    color: rgba(255,255,255,0.9);
+    color: rgba(255,255,255,0.95);
     letter-spacing: 0.06em;
     text-align: center;
     position: relative;
     z-index: 1;
   }
 
+  /* QR Sublabel — clamp(12px, 0.95vw, 16px) */
   .qr-sublabel {
-    font-size: clamp(11px, 0.85vw, 14px);
+    font-size: clamp(12px, 0.95vw, 16px);
     font-weight: 400;
-    color: rgba(255,255,255,0.55);
+    color: rgba(255,255,255,0.6);
     letter-spacing: 0.04em;
     text-align: center;
     position: relative;
     z-index: 1;
   }
 
-  /* ── FOOTER — heller ── */
+  /* ── FOOTER ── */
   .footer {
     padding: 0 4.5vw 2.5vh;
     display: flex;
@@ -315,7 +302,7 @@
   }
 
   .footer-text {
-    font-size: clamp(11px, 0.9vw, 15px);
+    font-size: clamp(12px, 0.95vw, 16px);
     font-weight: 500;
     color: rgba(255,255,255,0.75);
     letter-spacing: 0.08em;
@@ -378,12 +365,11 @@
       <!-- RIGHT — QR -->
       <div class="right">
         <div class="qr-card">
-          <!-- QR PLATZHALTER — ersetze mit: -->
-          <!-- <img src="DEINE_QR_URL" style="width:clamp(160px,16vw,250px);height:clamp(160px,16vw,250px);border-radius:14px;display:block;position:relative;z-index:1;"> -->
-          <div class="qr-placeholder">
-            <div class="qr-placeholder-icon">&#9638;</div>
-            <div class="qr-placeholder-text">QR-Code<br>folgt</div>
-          </div>
+          <img
+            class="qr-code"
+            src="https://ik.imagekit.io/ViewRStudio/Neobau%20Digital%20GmbH/VR%20Immo%20S%C3%BCd%202026/qr_generalversammlung-2026-terminbuchung.svg"
+            alt="QR-Code Terminbuchung"
+          />
           <div class="qr-label">Jetzt Termin buchen</div>
           <div class="qr-sublabel">60-Min&uuml;tiges Strategiegespr&auml;ch &mdash; kostenlos</div>
         </div>
