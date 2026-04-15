@@ -63,7 +63,7 @@
   }
 
   .brand {
-    font-size: clamp(13px, 1.1vw, 18px);
+    font-size: clamp(14px, 1.1vw, 18px);
     font-weight: 700;
     letter-spacing: 0.07em;
     color: #ffffff;
@@ -71,7 +71,7 @@
   .brand span { color: #5b8ff1; }
 
   .slide-num {
-    font-size: clamp(11px, 0.85vw, 14px);
+    font-size: clamp(12px, 0.95vw, 16px);
     letter-spacing: 0.14em;
     color: rgba(255,255,255,0.55);
     text-transform: uppercase;
@@ -98,7 +98,7 @@
     display: flex;
     align-items: center;
     gap: 1vw;
-    font-size: clamp(10px, 0.8vw, 13px);
+    font-size: clamp(12px, 1vw, 16px);
     font-weight: 700;
     letter-spacing: 0.22em;
     text-transform: uppercase;
@@ -122,13 +122,13 @@
 
   .headline .l1 {
     display: block;
-    font-size: clamp(28px, 4.2vw, 66px);
+    font-size: clamp(32px, 4.5vw, 72px);
     color: #ffffff;
   }
 
   .headline .l2 {
     display: block;
-    font-size: clamp(28px, 4.2vw, 66px);
+    font-size: clamp(32px, 4.5vw, 72px);
     font-style: italic;
     background: linear-gradient(135deg, #5b8ff1 0%, #7aaaf5 50%, #3d5a9e 100%);
     -webkit-background-clip: text;
@@ -137,7 +137,7 @@
   }
 
   .subline {
-    font-size: clamp(13px, 1.1vw, 18px);
+    font-size: clamp(16px, 1.3vw, 22px);
     font-weight: 400;
     color: rgba(255,255,255,0.85);
     line-height: 1.7;
@@ -152,7 +152,6 @@
     margin-bottom: 4vh;
   }
 
-  /* ── STATS — größer + heller ── */
   .stats {
     display: flex;
     align-items: stretch;
@@ -171,7 +170,7 @@
   }
 
   .stat-value {
-    font-size: clamp(26px, 3.5vw, 58px);
+    font-size: clamp(28px, 3.8vw, 62px);
     font-weight: 900;
     line-height: 1;
     background: linear-gradient(135deg, #5b8ff1 0%, #7aaaf5 60%, #3d5a9e 100%);
@@ -189,9 +188,8 @@
     white-space: nowrap;
   }
 
-  /* ── RIGHT — mehr vertikaler Abstand ── */
   .right {
-    width: 30vw;
+    width: 32vw;
     flex-shrink: 0;
   }
 
@@ -203,14 +201,14 @@
       0 0 80px rgba(91,143,241,0.10),
       0 0 30px rgba(91,143,241,0.06),
       inset 0 0 60px rgba(91,143,241,0.04);
-    padding: 6vh 3vw;
+    padding: 7vh 3.5vw;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     position: relative;
     overflow: hidden;
-    gap: 4vh;
+    gap: 5vh;
   }
 
   .logo-card::before {
@@ -235,11 +233,11 @@
     display: inline-flex;
     align-items: center;
     gap: 0.7vw;
-    font-size: clamp(10px, 0.9vw, 14px);
+    font-size: clamp(11px, 0.95vw, 15px);
     font-weight: 700;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    padding: 1vh 1.6vw;
+    padding: 1.1vh 1.6vw;
     border-radius: 20px;
     background: #5b8ff1;
     color: #ffffff;
@@ -269,7 +267,7 @@
   }
 
   .logo-wrap img {
-    width: clamp(160px, 16vw, 260px);
+    width: clamp(180px, 18vw, 290px);
     height: auto;
     display: block;
   }
@@ -292,25 +290,24 @@
   }
 
   .rebrand-from {
-    font-size: clamp(12px, 1vw, 16px);
+    font-size: clamp(13px, 1.05vw, 17px);
     font-weight: 500;
     color: rgba(255,255,255,0.6);
     letter-spacing: 0.06em;
   }
 
   .rebrand-arrow {
-    font-size: clamp(13px, 1.1vw, 18px);
+    font-size: clamp(14px, 1.1vw, 18px);
     color: rgba(91,143,241,0.8);
   }
 
   .rebrand-to {
-    font-size: clamp(12px, 1vw, 16px);
+    font-size: clamp(13px, 1.05vw, 17px);
     font-weight: 700;
     color: rgba(255,255,255,0.95);
     letter-spacing: 0.06em;
   }
 
-  /* ── FOOTER — heller ── */
   .footer {
     padding: 0 4.5vw 2.5vh;
     display: flex;
@@ -328,7 +325,7 @@
   }
 
   .footer-text {
-    font-size: clamp(11px, 0.9vw, 15px);
+    font-size: clamp(12px, 0.95vw, 16px);
     font-weight: 500;
     color: rgba(255,255,255,0.75);
     letter-spacing: 0.08em;
@@ -350,7 +347,6 @@
 
     <div class="body">
 
-      <!-- LEFT -->
       <div class="left">
         <div class="eyebrow">VR-Immo S&uuml;d &middot; Generalversammlung 2026</div>
 
@@ -359,9 +355,7 @@
           <span class="l2">Wir sind Euer Vertriebssystem.</span>
         </div>
 
-        <div class="subline">
-          Starke Kampagne. St&auml;rkerer Vertrieb.
-        </div>
+        <div class="subline">Starke Kampagne. St&auml;rkerer Vertrieb.</div>
 
         <div class="divider"></div>
 
@@ -381,7 +375,6 @@
         </div>
       </div>
 
-      <!-- RIGHT -->
       <div class="right">
         <div class="logo-card">
           <div class="since-badge">
@@ -389,10 +382,7 @@
             3. Jahr in Folge &middot; VR-Immo S&uuml;d
           </div>
           <div class="logo-wrap">
-            <img
-              src="https://ik.imagekit.io/ViewRStudio/Neobau%20Digital%20GmbH/Grafik/Logo/1.png"
-              alt="neubau.marketing"
-            />
+            <img src="https://ik.imagekit.io/ViewRStudio/Neobau%20Digital%20GmbH/Grafik/Logo/1.png" alt="neubau.marketing" />
           </div>
           <div class="card-divider"></div>
           <div class="rebrand">
