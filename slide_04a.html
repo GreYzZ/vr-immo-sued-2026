@@ -55,7 +55,6 @@
     z-index: 1;
   }
 
-  /* ── HEADER ── */
   .header {
     display: flex;
     align-items: center;
@@ -65,7 +64,7 @@
   }
 
   .brand {
-    font-size: clamp(13px, 1.1vw, 18px);
+    font-size: clamp(14px, 1.1vw, 18px);
     font-weight: 700;
     letter-spacing: 0.07em;
     color: #ffffff;
@@ -73,19 +72,18 @@
   .brand span { color: #5b8ff1; }
 
   .slide-num {
-    font-size: clamp(11px, 0.85vw, 14px);
+    font-size: clamp(12px, 0.95vw, 16px);
     letter-spacing: 0.14em;
     color: rgba(255,255,255,0.55);
     text-transform: uppercase;
     font-weight: 700;
   }
 
-  /* ── BODY ── */
   .body {
     flex: 1;
     display: flex;
     gap: 2.5vw;
-    padding: 2.5vh 4.5vw 2vh;
+    padding: 2vh 4.5vw 2vh;
     min-height: 0;
   }
 
@@ -98,11 +96,12 @@
     gap: 1.5vh;
   }
 
+  /* Eyebrow — clamp(12px, 1vw, 16px) */
   .case-eyebrow {
     display: flex;
     align-items: center;
     gap: 1vw;
-    font-size: clamp(10px, 0.8vw, 13px);
+    font-size: clamp(12px, 1vw, 16px);
     font-weight: 700;
     letter-spacing: 0.22em;
     text-transform: uppercase;
@@ -117,7 +116,7 @@
     flex-shrink: 0;
   }
 
-  /* Case-Tag — größer, heller, einzeilig */
+  /* Case-Tag — einzeilig, heller */
   .case-tag {
     font-size: clamp(11px, 0.9vw, 14px);
     font-weight: 700;
@@ -129,8 +128,9 @@
     text-overflow: ellipsis;
   }
 
+  /* Headline mittel — clamp(24px, 2.8vw, 44px) */
   .case-headline {
-    font-size: clamp(20px, 2.4vw, 38px);
+    font-size: clamp(24px, 2.8vw, 44px);
     font-weight: 900;
     line-height: 1.1;
   }
@@ -144,10 +144,10 @@
     color: transparent;
   }
 
-  /* PROJECT IMAGE — größer */
+  /* PROJECT IMAGE */
   .project-img {
-    height: 22vh;
-    flex-shrink: 0;
+    flex: 1;
+    min-height: 0;
     border-radius: 14px;
     overflow: hidden;
     position: relative;
@@ -171,7 +171,7 @@
     pointer-events: none;
   }
 
-  /* QUOTE — größer */
+  /* QUOTE */
   .quote {
     border-left: 2px solid #5b8ff1;
     padding: clamp(10px, 1.4vh, 18px) clamp(12px, 1vw, 16px);
@@ -181,17 +181,18 @@
     margin-top: auto;
   }
 
+  /* Subline — clamp(16px, 1.3vw, 22px) angepasst für Zitat */
   .quote-text {
-    font-size: clamp(12px, 1vw, 16px);
+    font-size: clamp(14px, 1.15vw, 18px);
     font-style: italic;
     font-weight: 400;
-    color: rgba(255,255,255,0.85);
+    color: rgba(255,255,255,0.88);
     line-height: 1.6;
     margin-bottom: 0.8vh;
   }
 
   .quote-author {
-    font-size: clamp(11px, 0.85vw, 14px);
+    font-size: clamp(12px, 0.95vw, 15px);
     font-weight: 700;
     letter-spacing: 0.08em;
     text-transform: uppercase;
@@ -212,10 +213,12 @@
     border-radius: 14px;
     border: 1px solid rgba(255,255,255,0.07);
     background: rgba(255,255,255,0.03);
-    padding: clamp(12px, 1.4vh, 20px) clamp(14px, 1.4vw, 22px);
+    padding: clamp(12px, 1.3vh, 18px) clamp(14px, 1.4vw, 22px);
     display: flex;
     flex-direction: column;
+    align-items: center;
     justify-content: space-between;
+    text-align: center;
     position: relative;
     overflow: hidden;
   }
@@ -251,15 +254,16 @@
     pointer-events: none;
   }
 
-  /* BENTO LABEL — heller + größer */
+  /* Bento-Label — clamp(12px, 0.95vw, 15px) */
   .bento-label {
-    font-size: clamp(10px, 0.82vw, 13px);
+    font-size: clamp(12px, 0.95vw, 15px);
     font-weight: 700;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.65);
+    color: rgba(255,255,255,0.7);
   }
 
+  /* Bento-Value — zentriert */
   .bento-value {
     font-weight: 900;
     line-height: 1;
@@ -268,25 +272,36 @@
     background-clip: text;
     color: transparent;
     filter: drop-shadow(0 0 12px rgba(91,143,241,0.3));
+    align-self: flex-start;
   }
 
-  .bento.hero .bento-value { font-size: clamp(36px, 5vw, 80px); }
-  .bento:not(.hero) .bento-value { font-size: clamp(22px, 2.8vw, 44px); }
+  .bento.hero .bento-value {
+    font-size: clamp(44px, 6.5vw, 100px);
+    margin: auto 0;
+    align-self: auto;
+  }
 
-  /* BENTO SUB — heller + größer */
+  .bento:not(.hero) .bento-value {
+    font-size: clamp(28px, 3.5vw, 56px);
+    margin: auto 0;
+    align-self: auto;
+  }
+
+  /* Bento-Sub — clamp(12px, 0.95vw, 16px) */
   .bento-sub {
-    font-size: clamp(11px, 0.88vw, 14px);
+    font-size: clamp(12px, 0.95vw, 16px);
     font-weight: 500;
-    color: rgba(255,255,255,0.75);
+    color: rgba(255,255,255,0.78);
     line-height: 1.4;
-    margin-top: 0.5vh;
   }
 
-  /* BUDGET → VOLUME — untereinander */
+  /* BUDGET → VOLUME untereinander */
   .budget-col {
     display: flex;
     flex-direction: column;
-    gap: 0.8vh;
+    gap: 0.6vh;
+    align-items: center;
+    margin: auto 0;
   }
 
   .budget-item {
@@ -303,7 +318,7 @@
   }
 
   .budget-value {
-    font-size: clamp(16px, 1.8vw, 28px);
+    font-size: clamp(20px, 2.4vw, 38px);
     font-weight: 900;
     line-height: 1;
     background: linear-gradient(135deg, #5b8ff1 0%, #7aaaf5 60%, #3d5a9e 100%);
@@ -314,14 +329,14 @@
   }
 
   .budget-label {
-    font-size: clamp(9px, 0.72vw, 11px);
+    font-size: clamp(11px, 0.88vw, 14px);
     font-weight: 700;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.5);
+    color: rgba(255,255,255,0.65);
   }
 
-  /* ── FOOTER — heller ── */
+  /* ── FOOTER ── */
   .footer {
     padding: 0 4.5vw 2.5vh;
     display: flex;
@@ -340,7 +355,7 @@
   }
 
   .footer-text {
-    font-size: clamp(11px, 0.9vw, 15px);
+    font-size: clamp(12px, 0.95vw, 16px);
     font-weight: 500;
     color: rgba(255,255,255,0.75);
     letter-spacing: 0.08em;
@@ -384,20 +399,20 @@
       <!-- RIGHT BENTO -->
       <div class="right">
 
-        <!-- HERO: ROI -->
+        <!-- HERO: ROI — aktualisiert auf ~181x + Gesamtbudget -->
         <div class="bento hero">
           <div class="bento-label">Return on Investment</div>
-          <div class="bento-value">~365x</div>
-          <div class="bento-sub">5.207 &euro; Mediabudget &rarr; ~1,9 Mio. &euro; Verkaufsvolumen</div>
+          <div class="bento-value">~181x</div>
+          <div class="bento-sub">10.471 &euro; Gesamtbudget &rarr; ~1,9 Mio. &euro; Verkaufsvolumen</div>
         </div>
 
         <!-- Budget → Volume untereinander -->
         <div class="bento">
-          <div class="bento-label">Mediabudget &rarr; Volumen</div>
+          <div class="bento-label">Gesamtbudget &rarr; Volumen</div>
           <div class="budget-col">
             <div class="budget-item">
-              <div class="budget-value">5.207 &euro;</div>
-              <div class="budget-label">Mediabudget</div>
+              <div class="budget-value">10.471 &euro;</div>
+              <div class="budget-label">Gesamtbudget</div>
             </div>
             <div class="budget-arrow">&#8595;</div>
             <div class="budget-item">
